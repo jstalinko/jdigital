@@ -1,0 +1,185 @@
+<template>
+  <div >
+    <nav class=" p-4">
+      <div class="container mx-auto flex justify-between items-center ">
+        <img src="/logo.png" class="w-48">
+        <div>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-home"></i> Home</a>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-cart"></i> Product</a>
+
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-information"></i> About</a>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-face-agent"></i> Services</a>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-email-heart-outline"></i> Contact</a>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-account"></i> Account</a>
+        </div>
+      </div>
+    </nav>
+    <section class="flex items-center justify-center h-screen">
+      <div class="text-center">
+        <h1 class="text-gray-600 text-7xl font-semibold mb-4 animate-pulse montserrat">{{ clockNow }}</h1>
+        <h1 class="text-gray-600 text-7xl font-bold mb-4 animate-fade-in titillium-web-bold">Welcome to JavaraDigital
+        </h1>
+        <h2 class="text-gray-500 text-2xl mb-3 animate-fade-in-delay montserrat">Your digital transformation partner.
+        </h2>
+        <div>
+          <button
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-4 hover:bg-gray-500 transition duration-300 montserrat cursor-pointer">Explore</button>
+          <button
+            class="bg-transparent text-blue-500 font-bold py-2 px-4 rounded hover:bg-gray-500 hover:text-white transition duration-300 montserrat">Get In Touch</button>
+        </div>
+      </div>
+      <div class="flying-cubes">
+        <div v-for="i in 10" :key="i" class="cube"></div>
+      </div>
+    </section>
+    <Product :products="products" :categories="categories"/>
+    <Post/>
+  </div>
+
+</template>
+
+<script setup>
+import Product from './Components/Product.vue';
+import Post from './Components/Post.vue';
+import { ref, onMounted } from 'vue';
+
+defineProps({products: Object , categories:Object});
+
+const clockNow = ref('00:00:00');
+const updateClock = () => {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  clockNow.value = `${hours}:${minutes}:${seconds}`;
+}
+onMounted(() => {
+  updateClock();
+  setInterval(updateClock, 1000);
+});
+
+</script>
+
+<style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 2s ease-in-out;
+}
+
+.animate-fade-in-delay {
+  animation: fade-in 3s ease-in-out;
+}
+
+.flying-cubes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -60;
+}
+
+.cube {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: blue;
+  animation: fly 15s linear infinite;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #333;
+}
+
+.cube:nth-child(2n) {
+  background: black;
+}
+
+.cube:nth-child(3n) {
+  background: blue;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-100vw, 100vh, 0);
+    opacity: 0;
+  }
+}
+
+.cube:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-duration: 18s;
+}
+
+.cube:nth-child(2) {
+  top: 30%;
+  left: 30%;
+  animation-duration: 20s;
+}
+
+.cube:nth-child(3) {
+  top: 40%;
+  left: 50%;
+  animation-duration: 22s;
+}
+
+.cube:nth-child(4) {
+  top: 50%;
+  left: 70%;
+  animation-duration: 24s;
+}
+
+.cube:nth-child(5) {
+  top: 60%;
+  left: 90%;
+  animation-duration: 26s;
+}
+
+.cube:nth-child(6) {
+  top: 70%;
+  left: 10%;
+  animation-duration: 28s;
+}
+
+.cube:nth-child(7) {
+  top: 80%;
+  left: 30%;
+  animation-duration: 30s;
+}
+
+.cube:nth-child(8) {
+  top: 90%;
+  left: 50%;
+  animation-duration: 32s;
+}
+
+.cube:nth-child(9) {
+  top: 10%;
+  left: 70%;
+  animation-duration: 34s;
+}
+
+.cube:nth-child(10) {
+  top: 20%;
+  left: 90%;
+  animation-duration: 36s;
+}
+</style>
