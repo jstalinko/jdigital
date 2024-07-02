@@ -1,8 +1,8 @@
 <template>
-   <div>
-    <section class="py-12 bg-gray-100 mt-10 h-screen">
+   <div id="productSection">
+    <section class="py-12 bg-gray-100 mt-10 h-screen" >
       <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> Our Products</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> Produk Kami</h2>
 
         <div class="flex flex-row justify-center gap-2 flex-wrap mb-5">
           <button class="bg-blue-500 p-2 px-4 rounded-full text-white shadow-sm hover:bg-blue-600" v-for="(cat,index) in categories" :key="index">{{ cat.name }}</button>
