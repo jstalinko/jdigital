@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JustOrangeController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,6 @@ Route::group(['prefix' => '/post'] , function(){
 Route::get('/products',[JustOrangeController::class , 'products'])->name('products');
 Route::group(['prefix' => '/product'] , function(){
     Route::redirect('/' , '/products');
+    Route::get('/checkout/{slug}',[OrderController::class, 'checkoutProduct'])->name('product.checkout');
     Route::get('/{slug}',[JustOrangeController::class, 'product'])->name('product.detail');
 });

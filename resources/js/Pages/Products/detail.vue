@@ -22,14 +22,14 @@
                             <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i> Publish :</span> <span>{{ new Date(props?.product?.created_at).toDateString() }}</span></li>
                         </ul>
                         <div class="flex items-center">
-                            <a href="" class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i class="mdi mdi-cart"></i> Beli Sekarang !</a>
+                            <Link :href="'/product/checkout/'+props.product.slug" class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i class="mdi mdi-cart"></i> Beli Sekarang !</Link>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col md:flex-row mt-5 ">
-                    <div class="basis-3/4 container  min-h-screen">
-                        <div v-html="props.product.description"></div>
+                    <div class="basis-3/4 container  min-h-screen border-2 px-10 py-10 rounded">
+                        <div v-html="props.product.description" class="prose md:prose-xl"></div>
                     </div>
                     <div class="basis-1/4">
                     <Card textHeader="Tags" :Footer="props.product.tags"/>
@@ -47,5 +47,6 @@ import Navbar from '../Components/Navbar.vue';
 import Card from '../Components/Card.vue';
 import {formatCurrency} from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
+import { Link } from '@inertiajs/vue3';
 defineProps({props: Object});
 </script>

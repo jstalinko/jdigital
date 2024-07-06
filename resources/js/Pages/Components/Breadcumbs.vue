@@ -2,13 +2,13 @@
     <nav class="bg-gray-100 p-3 rounded-md w-full" aria-label="Breadcrumb">
       <ol class="list-reset flex">
         <li v-for="(crumb, index) in breadcrumbs" :key="index" class="flex items-center">
-          <router-link
+          <Link
             v-if="index !== breadcrumbs.length - 1"
-            :to="crumb.href"
+            :href="crumb.href"
             class="text-blue-600 hover:text-blue-700"
           >
             {{ crumb.label }}
-          </router-link>
+        </Link>
           <span v-else class="text-gray-500">
             {{ crumb.label }}
           </span>
@@ -20,7 +20,7 @@
   
   <script setup>
   import { defineProps } from 'vue';
-  
+  import { Link } from '@inertiajs/vue3';
   const props = defineProps({
     breadcrumbs: {
       type: Array,

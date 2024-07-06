@@ -17,7 +17,7 @@
               <span class="text-xl font-semibold mb-2 hover:text-blue-400 hover:underline">{{ product.name }}</span>
           
               <div class="flex justify-between items-center">
-                <span class="text-blue-500 font-bold text-lg ">{{ product.price }}</span>
+                <span class="text-blue-500 font-bold text-lg ">{{ formatCurrency(product.price) }}</span>
                 <div class="items-end space-x-2">
                 <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-300"><i class="mdi mdi-cart"></i></button>
                 <button class="bg-transparent text-gray-400"><i class="mdi mdi-heart text-2xl"></i></button>
@@ -42,5 +42,6 @@
   
   <script setup>
   import {Link} from '@inertiajs/vue3';
+  import {formatCurrency} from '#helpers';
   defineProps({products: Object,categories: Object , headTitle: String,viewAll: Boolean});
   </script>
