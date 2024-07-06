@@ -1,5 +1,51 @@
 <template>
     <div>
-        
+        <Navbar/>
+
+        <div class="container mx-auto mt-5">
+            <Breadcumbs  :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' },{label: props.product.category.name , href: '/categories'} ,{ label: props.product.name, href: '?' }]" />
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex justify-center">
+                        <img :src="props.product.image" class="object-cover rounded max-w-full h-auto">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-2xl montserrat">{{ props.product.name }}</h3>
+
+                        <ul class="mt-2 p-3">
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori :</span> <span>{{props?.product?.category?.name}}</span> </li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cash"></i> Harga :</span> <span class="font-bold ">{{formatCurrency(props?.product?.price)}}</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat :</span> <span>10x</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cart-outline"></i> Terjual :</span> <span>10x</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-update"></i> Update :</span> <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i> Publish :</span> <span>{{ new Date(props?.product?.created_at).toDateString() }}</span></li>
+                        </ul>
+                        <div class="flex items-center">
+                            <a href="" class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i class="mdi mdi-cart"></i> Beli Sekarang !</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row mt-5 ">
+                    <div class="basis-3/4 container  min-h-screen">
+                        <div v-html="props.product.description"></div>
+                    </div>
+                    <div class="basis-1/4">
+                    <Card textHeader="Tags" :Footer="props.product.tags"/>
+                    <br>
+                    <Card textHeader="Bagikan" textContent="Bagikan" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+
+<script setup>
+import Navbar from '../Components/Navbar.vue';
+import Card from '../Components/Card.vue';
+import {formatCurrency} from '#helpers';
+import Breadcumbs from '../Components/Breadcumbs.vue';
+defineProps({props: Object});
+</script>

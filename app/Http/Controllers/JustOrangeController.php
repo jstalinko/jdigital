@@ -7,17 +7,18 @@ use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JustOrangeController extends Controller
 {
     public function index(): \Inertia\Response
     {
-        $props['products'] = Product::limit(8)->orderBy('id','desc')->get();
-        $props['categories'] = Category::where('active',true)->get();
-        $props['posts'] = Post::limit(6)->orderBy('id','desc')->get();
-        
-        $data['props'] =$props;
-        return Inertia::render('justorange-default',$data);
+        $props['products'] = Product::limit(8)->orderBy('id', 'desc')->get();
+        $props['categories'] = Category::where('active', true)->get();
+        $props['posts'] = Post::limit(6)->orderBy('id', 'desc')->get();
+
+        $data['props'] = $props;
+        return Inertia::render('justorange-default', $data);
     }
 
 
@@ -28,17 +29,38 @@ class JustOrangeController extends Controller
     /**--------------------------- VIEW POST SECTION -------------------------- */
     public function post(Request $request): \Inertia\Response
     {
-        $props['post'] = Post::where('slug',$request->slug)->first();
-        
+        $post = Post::where('slug', $request->slug)->first();
+
+        if (!$post) {
+            return to_route('/');
+        }
+
+
+        $relatedPosts = DB::table('posts')
+            ->whereExists(function ($query) use ($post) {
+                $query->select(DB::raw(1))
+                    ->from(DB::raw('json_each(posts.tags)'))
+                    ->whereNotNull('json_each.value');
+            })
+            ->where('id', '!=', $post->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(6)
+            ->get();
+
+        $props = [
+            'post' => $post,
+            'posts' => $relatedPosts,
+        ];
         $data['props'] = $props;
-        return Inertia::render('Posts/detail',$data);
+
+        return Inertia::render('Posts/detail', $data);
     }
     public function posts(Request $request): \Inertia\Response
     {
-        $props['posts'] = Post::orderBy('id','desc')->get();
-        
+        $props['posts'] = Post::orderBy('id', 'desc')->get();
+
         $data['props'] = $props;
-        return Inertia::render('Posts/index',$data);
+        return Inertia::render('Posts/index', $data);
     }
     /**--------------------------- VIEW POST SECTION -------------------------- */
 
@@ -47,18 +69,17 @@ class JustOrangeController extends Controller
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
     public function product(Request $request): \Inertia\Response
     {
-        $props['product'] = Product::where('slug',$request->slug)->first();
-        
+        $props['product'] = Product::where('slug', $request->slug)->with('category')->first();
+
         $data['props'] = $props;
-        return Inertia::render('Products/detail',$data);
+        return Inertia::render('Products/detail', $data);
     }
     public function products(Request $request): \Inertia\Response
     {
-        $props['products'] = Post::orderBy('id','desc')->get();
-        
+        $props['products'] = Post::orderBy('id', 'desc')->with('category')->get();
+
         $data['props'] = $props;
-        return Inertia::render('Products/detail',$data);
+        return Inertia::render('Products/detail', $data);
     }
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
-
 }
