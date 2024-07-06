@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\JustOrangeController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JustOrangeController;
 
 /*
 |--------------------------------------------------------------------------

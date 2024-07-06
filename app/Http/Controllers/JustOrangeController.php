@@ -31,18 +31,18 @@ class JustOrangeController extends Controller
         $props['post'] = Post::where('slug',$request->slug)->first();
         
         $data['props'] = $props;
-        return Inertia::render('post/detail',$data);
+        return Inertia::render('Posts/detail',$data);
     }
     public function posts(Request $request): \Inertia\Response
     {
         $props['posts'] = Post::orderBy('id','desc')->get();
         
         $data['props'] = $props;
-        return Inertia::render('post/detail',$data);
+        return Inertia::render('Posts/index',$data);
     }
     /**--------------------------- VIEW POST SECTION -------------------------- */
 
-    
+
 
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
     public function product(Request $request): \Inertia\Response
@@ -50,14 +50,14 @@ class JustOrangeController extends Controller
         $props['product'] = Product::where('slug',$request->slug)->first();
         
         $data['props'] = $props;
-        return Inertia::render('product/detail',$data);
+        return Inertia::render('Products/detail',$data);
     }
     public function products(Request $request): \Inertia\Response
     {
         $props['products'] = Post::orderBy('id','desc')->get();
         
         $data['props'] = $props;
-        return Inertia::render('product/detail',$data);
+        return Inertia::render('Products/detail',$data);
     }
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
 
