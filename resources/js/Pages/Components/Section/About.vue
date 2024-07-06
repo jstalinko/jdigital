@@ -11,7 +11,7 @@
         <div class="mt-10">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <img src="/logo.png" alt="About Us" class="rounded-lg ">
+              <img src="/about.svg" alt="About Us" class="rounded-lg ">
             </div>
             <div class="flex flex-col justify-center">
                 <p class="text-lg text-gray-700 mb-4">

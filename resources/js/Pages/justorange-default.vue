@@ -41,9 +41,9 @@
     </section>
     <About />
     <Services />
-    <Product :products="products" :categories="categories" />
+    <Product :products="props.products" :categories="props.categories" />
 
-
+    <PostSection :posts="props.posts" />
     <ContactUs />
 
     <Footer />
@@ -58,12 +58,12 @@ import About from './Components/Section/About.vue';
 import Services from './Components/Section/Services.vue';
 import ContactUs from './Components/Section/ContactUs.vue';
 import CookieAlert from './Components/Section/CookieAlert.vue';
-
+import PostSection from './Components/Section/PostSection.vue';
 import Footer from './Components/Footer.vue';
 import { ref, onMounted } from 'vue';
 import {Link} from '@inertiajs/vue3';
 
-defineProps({ products: Object, categories: Object });
+defineProps({props: Object });
 
 const clockNow = ref('00:00:00');
 const updateClock = () => {

@@ -3,6 +3,8 @@ import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import router from './router';
+import path from 'path';
+
 
 createInertiaApp({
   resolve: name => {

@@ -15,3 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [JustOrangeController::class , 'index']);
+
+Route::get('/posts',[JustOrangeController::class , 'posts'])->name('posts');
+Route::group(['prefix' => '/post'] , function(){
+    Route::redirect('/' , '/posts');
+    Route::get('/{slug}',[JustOrangeController::class, 'post'])->name('post.detail');
+});
+
+Route::get('/products',[JustOrangeController::class , 'products'])->name('products');
+Route::group(['prefix' => '/product'] , function(){
+    Route::redirect('/' , '/products');
+    Route::get('/{slug}',[JustOrangeController::class, 'product'])->name('product.detail');
+});

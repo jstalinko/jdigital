@@ -28,8 +28,12 @@
           </div>
         </div>
   
-        <br>
-        
+      
+        <div class="flex items-center justify-center">
+      <Link href="/products" class="mt-10 mb-5 text-gray-600 border-2 rounded-full p-2 hover:border-black">
+        Tampilkan Semua
+      </Link>
+    </div>      
       </div>
      
     </section>
