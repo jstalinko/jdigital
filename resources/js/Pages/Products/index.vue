@@ -1,5 +1,39 @@
 <template>
     <div>
-        
+        <Navbar />
+
+        <div class="container mx-auto">
+            <div class="mt-10">
+                <Breadcumbs
+                    :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Semua Produk', href: '/products' }]" />
+
+                <div class="mt-5">
+                    <h3 class="text-2xl text-center montserrat font-bold">Cari Produk</h3>
+                    <form>
+                        <div class="flex items-center  border-b-2 border-gray-200 py-2">
+                            <input v-model="searchQuery" type="text" placeholder="Search..."
+                                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                            <button type="submit"
+                                class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">
+                                <i class="mdi mdi-magnify"></i> Cari
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-5 mb-10">
+                        <Product :products="props.products" :categories="props.categories" :viewAll="true" :headTitle="'Semua Produk'"/> 
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
+
+<script setup>
+import Breadcumbs from '../Components/Breadcumbs.vue';
+import Navbar from '../Components/Navbar.vue';
+import Product from '../Components/Section/Product.vue';
+import {ref} from 'vue';
+const searchQuery = ref('');
+defineProps({props: Object});
+</script>

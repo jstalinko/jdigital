@@ -1,8 +1,8 @@
 <template>
    <div id="productSection">
-    <section class="py-12 bg-gray-100 mt-10 h-screen" >
+    <section class="py-12 bg-gray-100 mt-10 min-h-screen" >
       <div class="container mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> Produk Kami</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> {{ headTitle ?? 'Produk Kami'}}</h2>
 
         <div class="flex flex-row justify-center gap-2 flex-wrap mb-5">
           <button class="bg-blue-500 p-2 px-4 rounded-full text-white shadow-sm hover:bg-blue-600" v-for="(cat,index) in categories" :key="index">{{ cat.name }}</button>
@@ -29,7 +29,7 @@
         </div>
   
       
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center" v-if="viewAll !== true">
       <Link href="/products" class="mt-10 mb-5 text-gray-600 border-2 rounded-full p-2 hover:border-black">
         Tampilkan Semua
       </Link>
@@ -42,5 +42,5 @@
   
   <script setup>
   import {Link} from '@inertiajs/vue3';
-  defineProps({products: Object,categories: Object});
+  defineProps({products: Object,categories: Object , headTitle: String,viewAll: Boolean});
   </script>

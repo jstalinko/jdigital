@@ -21,11 +21,12 @@
         </div>
     </div>
     </div>
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center" v-if="viewAll !== true">
       <Link href="/posts/" class="mt-10 mb-5 text-gray-600 border-2 rounded-full p-2 hover:border-black">
         Tampilkan Semua
       </Link>
     </div>
+    <br><br>
 
     </div>
   </div>
@@ -34,5 +35,5 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
 import {stripTags} from '#helpers';
-defineProps({posts: Object});
+defineProps({posts: Object,viewAll: Boolean});
 </script>

@@ -76,10 +76,11 @@ class JustOrangeController extends Controller
     }
     public function products(Request $request): \Inertia\Response
     {
-        $props['products'] = Post::orderBy('id', 'desc')->with('category')->get();
+        $props['products'] = Product::orderBy('id', 'desc')->with('category')->get();
+        $props['categories'] = Category::where('active',true)->get();
 
         $data['props'] = $props;
-        return Inertia::render('Products/detail', $data);
+        return Inertia::render('Products/index', $data);
     }
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
 }
