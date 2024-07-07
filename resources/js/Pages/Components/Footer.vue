@@ -39,7 +39,7 @@
         </div>
         <div class="mt-12 border-t border-gray-700 pt-8">
           <p class="text-sm text-gray-400 text-center">
-            &copy; 2024 Javaradigital. All rights reserved.
+            &copy; {{new Date().getFullYear()}} JavaraDigital - PT. Jepara Solusi Teknologi
           </p>
         </div>
       </div>

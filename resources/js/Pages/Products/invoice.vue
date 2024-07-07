@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref,onMounted } from 'vue';
 import Accordion from '../Components/Accordion.vue';
 import { formatCurrency } from '#helpers';
 const propz = defineProps({ props: Object });
@@ -122,6 +122,10 @@ const statusUi = (status) => {
         return '<h1 class="text-2xl montserrat font-bold text-gray-500">'+status.toUpperCase()+'</h1>';
     }
 }
+
+onMounted(()=>{
+    setTimeout(() => window.location.reload(),60000);
+});
 
 
 </script>
