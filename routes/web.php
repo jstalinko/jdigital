@@ -16,21 +16,20 @@ use App\Http\Controllers\OrderController;
 |
 */
 
-Route::get('/', [JustOrangeController::class , 'index']);
-Route::get('/about', [JustOrangeController::class , 'about'])->name('about');
-Route::get('/contact', [JustOrangeController::class , 'contact'])->name('contact');
+Route::get('/', [JustOrangeController::class, 'index']);
+Route::get('/about', [JustOrangeController::class, 'about'])->name('about');
+Route::get('/contact', [JustOrangeController::class, 'contact'])->name('contact');
+Route::get('/invoice/{invoice}', [OrderController::class, 'getInvoice'])->name('invoice');
 
-
-Route::get('/posts',[JustOrangeController::class , 'posts'])->name('posts');
-Route::group(['prefix' => '/post'] , function(){
-    Route::redirect('/' , '/posts');
-    Route::get('/{slug}',[JustOrangeController::class, 'post'])->name('post.detail');
+Route::get('/posts', [JustOrangeController::class, 'posts'])->name('posts');
+Route::group(['prefix' => '/post'], function () {
+    Route::redirect('/', '/posts');
+    Route::get('/{slug}', [JustOrangeController::class, 'post'])->name('post.detail');
 });
 
-Route::get('/products',[JustOrangeController::class , 'products'])->name('products');
-Route::group(['prefix' => '/product'] , function(){
-    Route::redirect('/' , '/products');
-    Route::get('/checkout/{slug}',[OrderController::class, 'checkoutProduct'])->name('product.checkout');
-    Route::get('/{slug}',[JustOrangeController::class, 'product'])->name('product.detail');
+Route::get('/products', [JustOrangeController::class, 'products'])->name('products');
+Route::group(['prefix' => '/product'], function () {
+    Route::redirect('/', '/products');
+    Route::get('/checkout/{slug}', [OrderController::class, 'checkoutProduct'])->name('product.checkout');
+    Route::get('/{slug}', [JustOrangeController::class, 'product'])->name('product.detail');
 });
-

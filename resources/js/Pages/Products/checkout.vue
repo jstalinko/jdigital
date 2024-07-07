@@ -55,10 +55,12 @@
                                 }}</span>
                         </li>
                     </ul>
-                    <div class="flex items-center">
-                        <Link :href="'/product/checkout/' + props.product.slug"
+                    <div class="flex items-center flex-col">
+                        <b class="montserrat text-md">Nomer HP Anda :</b>
+                        <input class="border-2 w-full mt-2 mb-2 p-2 rounded" v-model="phone" placeholder="masukan nomer hp / whatsapp anda"/>
+                        <button @click="handleCheckout"
                             class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i
-                            class="mdi mdi-cart"></i> Checkout !</Link>
+                            class="mdi mdi-cart"></i> Checkout !</button>
                     </div>
                     <br><br>
                 </div>
@@ -81,6 +83,7 @@ const totalFee = ref(0);
 const methodBayarCode = ref('');
 const methodBayarName = ref('');
 const selectedPayment = ref(null);
+const phone = ref('');
 
 
 const handlePaymentSelected = (payment) => {
@@ -90,4 +93,31 @@ const handlePaymentSelected = (payment) => {
     methodBayarCode.value = payment.code;
     methodBayarName.value = payment.name;
 };
+const handleCheckout = async () =>
+{
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+  //  console.log(token);
+    let resp = await fetch('/api/create-order',{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token
+        },
+        body:JSON.stringify({
+            product_id: propz.props.product.id,
+            methodCode: methodBayarCode.value,
+            methodName: methodBayarName.value,
+            phone: phone.value,
+            amountTotal: totalBayar.value,
+            fee: totalFee.value
+        })
+    }).then(res => res.json());
+    if(resp.success)
+    {
+        console.log(resp);
+        window.location.href = resp.redirect;   
+    }else{
+        console.log(resp);
+    }
+}
 </script>
