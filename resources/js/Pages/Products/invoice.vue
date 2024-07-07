@@ -10,12 +10,12 @@
                     <p class="mt-3">Invoice ID :</p>
                     <h1 class="text-2xl montserrat font-bold">#{{ props.order.invoice }}</h1>
                     <p class="mt-2">Status :</p>
-                    <h1 class="text-2xl montserrat font-bold">{{ props.order.status.toUpperCase() }}</h1>
+                    <div v-html="statusUi(props.order.status)"></div>
                     <div>
                         <small class="text-sm text-gray-500 mt-3">Invoice Date: {{ new
                             Date(invDate).toLocaleDateString('en-GB') }}</small><br>
                         <small class="text-sm text-gray-500">Due Date: {{ new
-                            Date(dueDate).toLocaleDateString('en-GB')}}</small>
+                            Date(dueDate).toLocaleDateString('en-GB') }}</small>
                     </div>
 
                 </div>
@@ -26,11 +26,53 @@
                     </h1>
                     <p class="mt-3">Tujuan Pembayaran:</p>
                     <div v-html="paymenteDestination()"></div>
+                    <p class="mt-3">Total Bayar:</p>
+                    <b class="font-bold text-xl">{{ formatCurrency(props.order.total) }}</b>
                     <p class="mt-3">Petunjuk Pembayaran:</p>
                     <Accordion :items="JSON.parse(props.order.payment_instructions)" />
                 </div>
             </div>
 
+
+            <div class="border-2 rounded mt-5">
+                <div class="bg-gray-100 p-3 rounded">
+                    <h3 class="text-md">Invoice Items</h3>
+                </div>
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2">Items</th>
+                            <th class="py-2">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2">
+                                {{ props.order.product.name }}
+                            </td>
+                            <td class="py-2">
+                                {{ formatCurrency(props.order.product.price) }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="mb-4 mt-4 p-4">
+                    <h2 class="text-xl font-semibold">Summary</h2>
+                    <p class="mb-2"><strong>Subtotal:</strong> {{ formatCurrency(props.order.product.price) }}</p>
+                    <p class="mb-2"><strong>Biaya Merchant:</strong> {{ formatCurrency(props.order.fee) }}</p>
+                    <p class="mb-2"><strong>Total:</strong> <span class="font-bold text-md animate-pulse">
+                            {{ formatCurrency(props.order.total) }}</span> </p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center mt-10 gap-2">
+                <button class="bg-gray-500 text-white p-2 rounded" @click="handlePrint">
+                    <i class="mdi mdi-printer"></i> Print
+                </button>
+                <button class="bg-red-500 text-white p-2 rounded" @click="refresh">
+                    <i class="mdi mdi-refresh"></i> Refresh
+                </button>
+            </div>
 
         </div>
         <br>
@@ -40,6 +82,7 @@
 <script setup>
 import { ref } from 'vue';
 import Accordion from '../Components/Accordion.vue';
+import { formatCurrency } from '#helpers';
 const propz = defineProps({ props: Object });
 
 const createdDate = propz.props.order.created_at;
@@ -49,7 +92,7 @@ const dueDate = ref(due);
 const invDate = ref(createdDate);
 
 
-const paymenteDestination = (target) => {
+const paymenteDestination = () => {
     let dest = propz.props.order.payment_destination;
     if (dest.match(/^http/)) {
         if (dest.match(/qr/)) {
@@ -62,5 +105,41 @@ const paymenteDestination = (target) => {
     }
 }
 
+const handlePrint = () => {
+    window.print();
+}
+const refresh = () => {
+    window.location.reload();
+}
+const statusUi = (status) => {
+    if(status == 'unpaid' || status == 'cancelled')
+    {
+        return '<h1 class="text-2xl montserrat font-bold text-red-500">'+status.toUpperCase()+'</h1>';
+    }else if(status == 'paid')
+    {
+        return '<h1 class="text-2xl montserrat font-bold text-green-500">'+status.toUpperCase()+'</h1>';
+    }else{
+        return '<h1 class="text-2xl montserrat font-bold text-gray-500">'+status.toUpperCase()+'</h1>';
+    }
+}
+
 
 </script>
+
+<style scoped>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+</style>
