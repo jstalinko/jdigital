@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\TripayWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/tripay-webhook' , [TripayWebhookController::class]);
 
 Route::post('/create-order',[OrderController::class , 'createTransaction']);

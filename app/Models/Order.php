@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Order extends Model
 {
     use HasFactory;
+    
+    const PURCHASING_STATUS = [
+        'UNPAID' => 'unpaid',
+        'PAID' => 'paid',
+        'FAILED' => 'cancelled',
+        'EXPIRED' => 'expired',
+        'REFUND' => 'cancelled',
+    ];
 
     public function product(): BelongsTo
     {
