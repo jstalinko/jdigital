@@ -17,6 +17,9 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', [JustOrangeController::class , 'index']);
+Route::get('/about', [JustOrangeController::class , 'about'])->name('about');
+Route::get('/contact', [JustOrangeController::class , 'contact'])->name('contact');
+
 
 Route::get('/posts',[JustOrangeController::class , 'posts'])->name('posts');
 Route::group(['prefix' => '/post'] , function(){
@@ -30,3 +33,4 @@ Route::group(['prefix' => '/product'] , function(){
     Route::get('/checkout/{slug}',[OrderController::class, 'checkoutProduct'])->name('product.checkout');
     Route::get('/{slug}',[JustOrangeController::class, 'product'])->name('product.detail');
 });
+

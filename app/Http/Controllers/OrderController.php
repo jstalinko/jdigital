@@ -4,21 +4,57 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Product;
+use Nekoding\Tripay\Tripay;
 use Illuminate\Http\Request;
+use Nekoding\Tripay\Signature;
 use Illuminate\Support\Collection;
 use Nekoding\Tripay\Networks\HttpClient;
-use Nekoding\Tripay\Tripay;
 
 
 class OrderController extends Controller
 {
+    protected $TRIPAY_APIKEY = 'DEV-h9WRz6gl4Ttcgq3eAnIoypdXGHOLEBxyxkcwfjWM';
+    protected $TRIPAY_PRIVATKEY = 'ko1mj-wbDMD-dTL9G-384gd-vNtrY';
+    protected $TRIPAY_MERCHANT = 'T17010';
+    protected $TRIPAY_SANDBOX=true;
     protected function paymentChannel(): Collection
     {
 
-        $tripay = new Tripay(new HttpClient('DEV-h9WRz6gl4Ttcgq3eAnIoypdXGHOLEBxyxkcwfjWM'));
+        $tripay = new Tripay(new HttpClient($this->TRIPAY_APIKEY));
 
         return $tripay->getChannelPembayaran();
     }
+    protected function createTransaction()
+    {
+        $data = [
+            'method'         => 'BRIVA',
+            'merchant_ref'   => 'KODE INVOICE',
+            'amount'         => 50000,
+            'customer_name'  => 'Nama Pelanggan',
+            'customer_email' => 'emailpelanggan@domain.com',
+            'customer_phone' => '081234567890',
+            'order_items'    => [
+                [
+                    'sku'         => 'FB-06',
+                    'name'        => 'Nama Produk 1',
+                    'price'       => 50000,
+                    'quantity'    => 1,
+                    'product_url' => 'https://tokokamu.com/product/nama-produk-1',
+                    'image_url'   => 'https://tokokamu.com/product/nama-produk-1.jpg',
+                ]
+            ],
+            'return_url'   => 'https://domainanda.com/redirect',
+            'expired_time' => (time() + (24 * 60 * 60)), // 24 jam
+            'signature'    => Signature::generate('KODE INVOICE' . 50000)
+        ];
+        
+        // dengan facade
+        
+        $tripay = (new Tripay(new HttpClient($this->TRIPAY_APIKEY)));
+
+        return $tripay->createTransaction($data,Tripay::CLOSE_TRANSACTION);
+    }
+
     public function checkoutProduct(Request $request): \Inertia\Response
     {
         $props['product'] = Product::where('slug', $request->slug)->with('category')->first();

@@ -27,10 +27,10 @@
           <Link href="/post" class="text-blue-500 font-bold hover:underline montserrat">
             <i class="mdi mdi-face-agent"></i> Post
           </Link>
-          <Link href="#contactSection" class="text-blue-500 font-bold hover:underline montserrat">
+          <Link href="/contact" class="text-blue-500 font-bold hover:underline montserrat">
             <i class="mdi mdi-email-heart-outline"></i> Kontak
           </Link>
-          <a href="#" class="text-blue-500 font-bold hover:underline montserrat">
+          <a href="/dashboard" class="text-blue-500 font-bold hover:underline montserrat">
             <i class="mdi mdi-account"></i> Akun
           </a>
         </div>

@@ -15,7 +15,7 @@
             Layanan</Link>
           <Link class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#contactSection" @click="scrollToSection('contactSection')"><i
               class="mdi mdi-email-heart-outline"></i> Kontak</Link>
-          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i class="mdi mdi-account"></i>
+          <a class="text-blue-500 font-bold hover:underline mx-3 montserrat" href="/dashboard"><i class="mdi mdi-account"></i>
             Akun</a>
         </div>
       </div>

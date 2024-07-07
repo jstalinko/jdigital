@@ -1,9 +1,10 @@
 <template>
     <div>
-        <Navbar/>
+        <Navbar />
 
         <div class="container mx-auto mt-5">
-            <Breadcumbs  :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' },{label: props.product.category.name , href: '/categories'} ,{ label: props.product.name, href: '?' }]" />
+            <Breadcumbs
+                :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' }, { label: props.product.category.name, href: '/categories' }, { label: props.product.name, href: '?' }]" />
 
             <div class="mt-10">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -14,15 +15,28 @@
                         <h3 class="font-bold text-2xl montserrat">{{ props.product.name }}</h3>
 
                         <ul class="mt-2 p-3">
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori :</span> <span>{{props?.product?.category?.name}}</span> </li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cash"></i> Harga :</span> <span class="font-bold ">{{formatCurrency(props?.product?.price)}}</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat :</span> <span>10x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cart-outline"></i> Terjual :</span> <span>10x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-update"></i> Update :</span> <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i> Publish :</span> <span>{{ new Date(props?.product?.created_at).toDateString() }}</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori
+                                    :</span> <span>{{ props?.product?.category?.name }}</span> </li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cash"></i> Harga
+                                    :</span> <span class="font-bold ">{{ formatCurrency(props?.product?.price) }}</span>
+                            </li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat
+                                    :</span> <span>{{ props?.product?.views }}x</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cart-outline"></i>
+                                    Terjual :</span> <span>{{ props?.product?.sold }}x</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-update"></i> Update
+                                    :</span> <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span></li>
+                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i>
+                                    Publish :</span> <span>{{ new Date(props?.product?.created_at).toDateString()
+                                    }}</span></li>
                         </ul>
-                        <div class="flex items-center">
-                            <Link :href="'/product/checkout/'+props.product.slug" class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i class="mdi mdi-cart"></i> Beli Sekarang !</Link>
+                        <div class="flex items-center flex-col">
+                            <button class="bg-gray-500 text-white hover:bg-red-500 rounded p-2 w-full text-center">
+                                <i class="mdi mdi-heart"></i> Tambahkan ke favorite
+                            </button><br>
+                            <Link :href="'/product/checkout/' +props.product.slug"
+                                class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i
+                                class="mdi mdi-cart"></i> Beli Sekarang !</Link>
                         </div>
                     </div>
                 </div>
@@ -32,9 +46,9 @@
                         <div v-html="props.product.description" class="prose md:prose-xl"></div>
                     </div>
                     <div class="basis-1/4">
-                    <Card textHeader="Tags" :Footer="props.product.tags"/>
-                    <br>
-                    <Card textHeader="Bagikan" textContent="Bagikan" />
+                        <Card textHeader="Tags" :Footer="props.product.tags" />
+                        <br>
+                        <Card textHeader="Bagikan" textContent="Tertarik dengan produk ini? bagikan ke teman atau kerabat anda! " Footer="sharer" :url="props?.global?.currentUrl" />
                     </div>
                 </div>
             </div>
@@ -45,8 +59,8 @@
 <script setup>
 import Navbar from '../Components/Navbar.vue';
 import Card from '../Components/Card.vue';
-import {formatCurrency} from '#helpers';
+import { formatCurrency } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import { Link } from '@inertiajs/vue3';
-defineProps({props: Object});
+defineProps({ props: Object });
 </script>
