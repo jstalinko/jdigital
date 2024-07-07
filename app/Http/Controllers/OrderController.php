@@ -13,18 +13,15 @@ use Nekoding\Tripay\Networks\HttpClient;
 
 class OrderController extends Controller
 {
-    protected $TRIPAY_APIKEY = 'DEV-h9WRz6gl4Ttcgq3eAnIoypdXGHOLEBxyxkcwfjWM';
-    protected $TRIPAY_PRIVATKEY = 'ko1mj-wbDMD-dTL9G-384gd-vNtrY';
-    protected $TRIPAY_MERCHANT = 'T17010';
-    protected $TRIPAY_SANDBOX=true;
+  
     protected function paymentChannel(): Collection
     {
 
-        $tripay = new Tripay(new HttpClient($this->TRIPAY_APIKEY));
+        $tripay = new Tripay(new HttpClient(env('TRIPAY_API_KEY')));
 
         return $tripay->getChannelPembayaran();
     }
-    protected function createTransaction()
+    public function createTransaction(Request $request)
     {
         $data = [
             'method'         => 'BRIVA',
@@ -50,7 +47,7 @@ class OrderController extends Controller
         
         // dengan facade
         
-        $tripay = (new Tripay(new HttpClient($this->TRIPAY_APIKEY)));
+        $tripay = (new Tripay(new HttpClient(env('TRIPAY_API_KEY'))));
 
         return $tripay->createTransaction($data,Tripay::CLOSE_TRANSACTION);
     }

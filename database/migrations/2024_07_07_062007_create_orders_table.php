@@ -13,18 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('product_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('guest_phone')->nullable();
-            $table->string('payment_method');
-            $table->string('transaction_id')->nullable();
-            $table->decimal('total_amount', 10, 2);
-            $table->string('status')->default('pending');
+            $table->string('invoice');
+            $table->string('payment_method_code');
+            $table->string('payment_method_name');
+            $table->integer('amount');
+            $table->enum('status',['pending','paid','unpaid','expired','cancelled']);
             $table->timestamps();
 
-            // Define foreign key constraint (optional if you have users table)
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-    
-            $table->timestamps();
+          
         });
     }
 
