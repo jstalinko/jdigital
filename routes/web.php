@@ -30,6 +30,8 @@ Route::group(['prefix' => '/post'], function () {
 Route::get('/products', [JustOrangeController::class, 'products'])->name('products');
 Route::group(['prefix' => '/product'], function () {
     Route::redirect('/', '/products');
+    Route::get('/category/{slug}', [JustOrangeController::class, 'categoryProduct'])->name('product.category');
+    Route::get('/search',[JustOrangeController::class , 'searchProduct'])->name('product.search');
     Route::get('/checkout/{slug}', [OrderController::class, 'checkoutProduct'])->name('product.checkout');
     Route::get('/{slug}', [JustOrangeController::class, 'product'])->name('product.detail');
 });

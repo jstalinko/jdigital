@@ -5,7 +5,14 @@
         <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> {{ headTitle ?? 'Produk Kami'}}</h2>
 
         <div class="flex flex-row justify-center gap-2 flex-wrap mb-5">
-          <button class="bg-blue-500 p-2 px-4 rounded-full text-white shadow-sm hover:bg-blue-600" v-for="(cat,index) in categories" :key="index">{{ cat.name }}</button>
+
+          <div class="bg-blue-500 rounded text-white p-4 px-4 w-full m-4 text-md montserrat" v-show="search !== undefined">
+            <i class="mdi mdi-magnify"></i> Hasil pencarian  : <span class="font-bold underline"> {{search }}</span>
+          </div>
+       
+              <Link class="bg-blue-500 p-2 px-4 rounded-full text-white shadow-sm hover:bg-blue-600" v-if="activeCat !== undefined" href="/products">Semua</Link>
+          
+          <Link :class="activeCat !== undefined && activeCat.slug == cat.slug ? 'bg-white p-2 px-4 rounded-full text-blue-500 outline shadow-sm hover:bg-blue-500 hover:text-white' : 'bg-blue-500 p-2 px-4 rounded-full text-white shadow-sm hover:bg-blue-600'"  v-for="(cat,index) in categories" :key="index" :href="'/product/category/'+cat.slug">{{ cat.name }}</Link>
        
         </div>
         
@@ -44,7 +51,7 @@
   import {Link} from '@inertiajs/vue3';
   import {watch,ref,onMounted} from 'vue';
   import {formatCurrency,isFavorite,toggleFavorite,loadFavorites} from '#helpers';
-  defineProps({products: Object,categories: Object , headTitle: String,viewAll: Boolean});
+  defineProps({products: Object,categories: Object , headTitle: String,viewAll: Boolean , activeCat: Object,search: String });
 
   const loadFavorite = ref(null);
   const fav = async(id) => {
