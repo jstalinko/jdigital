@@ -10,20 +10,21 @@
           <div class="basis-3/4 container  min-h-screen rounded border-2 py-5 px-5">
             <h3 class="text-3xl font-bold montserrat mb-3 mt-3 p-3 border-b-2 ">{{ props.post.title }}</h3>
 
-            <img :src="props.post.image" :alt="props.post.title" class="max-w-full rounded mx-auto object-cover mb-5 "/>
+            <img :src="props.post.image" :alt="props.post.title"
+              class="max-w-full rounded mx-auto object-cover mb-5 " />
             <div v-html="props.post.content" class="prose md:prose-xl"></div>
           </div>
           <div class="basis-1/4 px-3 py-3">
             <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-100">
               <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2 text-center border-b-2 p-2 montserrat">Pencarian</div>
-                <input class="border-2 rounded w-full p-2 ">
-                <button class="bg-blue-500 hover:bg-blue-600 p-2 w-full rounded text-white mt-2"><i
-                    class="mdi mdi-magnify"></i> Cari</button>
+                <input class="border-2 rounded w-full p-2 " v-model="searchQuery">
+                <button class="bg-blue-500 hover:bg-blue-600 p-2 w-full rounded text-white mt-2" type="button"
+                  @click="handleClick"><i class="mdi mdi-magnify"></i> Cari</button>
               </div>
             </div>
             <br>
-            <Card textHeader="Tags" :Footer="props.post.tags" />
+            <Card textHeader="Tags" :Footer="props.post.tags" :url="props?.global?.currentUrl" />
             <br>
             <div class="max-w-sm rounded overflow-hidden shadow-lg bg-gray-100">
               <div class="p-2">
@@ -40,7 +41,8 @@
               </div>
             </div>
             <br>
-            <Card textHeader="Bagikan" textContent="Bagikan" />
+            <Card textHeader="Bagikan" textContent="Tertarik dengan produk ini? bagikan ke teman atau kerabat anda! "
+              Footer="sharer" :url="props?.global?.currentUrl" />
 
           </div>
         </div>
@@ -54,6 +56,11 @@ import Navbar from '../Components/Navbar.vue';
 import Card from '../Components/Card.vue';
 import { formatCurrency } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
+import { ref } from 'vue';
 defineProps({ props: Object });
+const searchQuery = ref('');
+const handleClick = async () => {
+  router.visit('/post/search?query=' + searchQuery.value);
+}
 </script>

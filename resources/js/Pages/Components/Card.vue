@@ -8,9 +8,11 @@
         </div>
         <div class="px-6 pt-4 pb-2">
             <div v-if="typeof Footer === 'object'">
-                <span
+                <button
                     class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 montserrat"
-                    v-for="(fot, index) in Footer" :key="index">{{ fot }}</span>
+                    v-for="(fot, index) in Footer" :key="index" @click="share('link_tags', fot)">{{
+                        fot }}
+                </button>
             </div>
             <div v-else-if="typeof Footer === 'string' && Footer == 'sharer'">
                 <div class="flex space-x-2 justify-center ">
@@ -34,7 +36,7 @@
                         class="bg-red-600 text-white py-2 px-4 rounded flex items-center space-x-2 hover:bg-red-700">
                         <i class="mdi mdi-pinterest" :class="iconClass"></i>
                     </button>
-                    
+
                 </div>
 
             </div>
@@ -47,17 +49,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { Link, router } from '@inertiajs/vue3';
+import { ref, onMounted } from 'vue'
 const props = defineProps({ textHeader: String, textContent: String, Footer: String | Object | Array, url: String });
-
-
-
 const iconClass = ref('text-xl')
+const productOrPost = ref('');
 
-const share = (platform) => {
+const share = (platform, tag) => {
     let shareUrl = ''
     const encodedUrl = encodeURIComponent(props.url)
     const encodedText = encodeURIComponent('Cek produk ini di javaradigital ! ')
+    const parseUrl = new URL(props.url);
+    if (parseUrl.pathname.includes('product')) {
+        productOrPost.value = 'product';
+    } else if (parseUrl.pathname.includes('post')) {
+        productOrPost.value = 'post';
+    } else {
+        productOrPost.value = '';
+    }
 
     switch (platform) {
         case 'facebook':
@@ -68,10 +77,16 @@ const share = (platform) => {
             break
         case 'whatsapp':
             shareUrl = `https://wa.me/?text=${encodedText}%20${encodedUrl}`
-            break
+            break;
+        case 'link_tags':
+            shareUrl = `/${productOrPost.value}/search?query=` + tag;
+            break;
     }
-
-    window.open(shareUrl, '_blank')
+    if (platform !== 'link_tags') {
+        window.open(shareUrl, '_blank')
+    } else {
+        router.visit(shareUrl);
+    }
 }
 </script>
 

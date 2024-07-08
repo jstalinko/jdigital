@@ -18,4 +18,19 @@ class Post extends Model
         'author'
     ];
     protected $casts = ['tags' => 'array'];
+
+    public static function getTags()
+    {
+        $allTags = collect();
+
+        self::chunk(100, function ($posts) use (&$allTags) {
+            foreach ($posts as $post) {
+                $allTags = $allTags->merge($post->tags); // Assuming tags is an array
+            }
+        });
+
+        $uniqueTags = $allTags->unique()->values()->all();
+
+        return $uniqueTags;
+    }
 }

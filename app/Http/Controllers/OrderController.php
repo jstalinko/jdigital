@@ -107,8 +107,9 @@ class OrderController extends Controller
         $props['product'] = Product::where('slug', $request->slug)->with('category')->first();
         if (!$props['product']) to_route('/');
         $props['paymentChannel'] = $this->paymentChannel();
-
+        $props['userData'] = Helper::getUserOrder('');
         $data['props'] = $props;
+        
         return Inertia::render('Products/checkout', $data);
     }
     public function getInvoice(Request $request): \Inertia\Response

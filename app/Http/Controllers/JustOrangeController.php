@@ -70,10 +70,29 @@ class JustOrangeController extends Controller
 
         return Inertia::render('Posts/detail', $data);
     }
+    public function searchPost(Request $request): \Inertia\Response
+    {
+        $searchTerm = $request->input('query');
+
+        $props['posts'] = Post::orderBy('id', 'desc')
+            ->where('title', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('tags', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('content', 'LIKE', "%{$searchTerm}%")
+            ->get();
+        $props['global'] = $this->global;
+        $props['search'] = $searchTerm;
+        $props['tags'] =  Post::getTags();
+        $data['props'] = $props;
+
+        return Inertia::render('Posts/index', $data);
+    }
+
     public function posts(Request $request): \Inertia\Response
     {
         $props['posts'] = Post::orderBy('id', 'desc')->get();
         $props['global'] = $this->global;
+        $props['tags'] =  Post::getTags();
+
         $data['props'] = $props;
         return Inertia::render('Posts/index', $data);
     }
@@ -92,33 +111,33 @@ class JustOrangeController extends Controller
     }
     public function categoryProduct(Request $request): \Inertia\Response
     {
-        $category = Category::where('slug',$request->slug)->first();
-        if(!$category) to_route('/products');
+        $category = Category::where('slug', $request->slug)->first();
+        if (!$category) to_route('/products');
 
-        $props['products'] = Product::where('category_id' , $category->id)->with('category')->orderBy('id','desc')->get();
+        $props['products'] = Product::where('category_id', $category->id)->with('category')->orderBy('id', 'desc')->get();
         $props['categories'] = Category::all();
         $props['activeCat'] = $category;
         $props['global'] = $this->global;
 
         $data['props'] = $props;
 
-        return Inertia::render('Products/index',$data);
+        return Inertia::render('Products/index', $data);
     }
     public function searchProduct(Request $request): \Inertia\Response
     {
         $searchTerm = $request->input('query');
-    
+
         $props['products'] = Product::orderBy('id', 'desc')
             ->with('category')
             ->where('name', 'LIKE', "%{$searchTerm}%")
-            ->orWhere('tags','LIKE',"%{$searchTerm}%")
-            ->orWhere('description','LIKE',"%{$searchTerm}%")
+            ->orWhere('tags', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('description', 'LIKE', "%{$searchTerm}%")
             ->get();
-    
+
         $props['categories'] = Category::where('active', true)->get();
         $props['global'] = $this->global;
         $props['search'] = $searchTerm;
-    
+
         $data['props'] = $props;
         return Inertia::render('Products/index', $data);
     }

@@ -96,9 +96,10 @@ const paymenteDestination = () => {
     let dest = propz.props.order.payment_destination;
     if (dest.match(/^http/)) {
         if (dest.match(/qr/)) {
-            return '<img src="' + dest + '">';
+            return '<img src="' + dest + '" class="w-full object-cover bg-white p-2 border-2 border-black shadow rounded">';
         } else {
-            return '<a href="' + dest + '">';
+            window.open(dest,'_blank');
+            return '<br><a href="' + dest + '" class="bg-green-500 hover:bg-green-600 p-2 rounded text-white text-center" target="_blank">Klik disini untuk membayar</a>';
         }
     } else {
         return '<div class="bg-gray-500 text-white p-2 rounded text-xl text-center hover:bg-gray-600 hover:cursor-pointer">' + dest + ' <i class="mdi mdi-content-copy"></i> </div>';

@@ -61,7 +61,7 @@ class Helper
     {
         if (auth()->check()) {
             return [
-                'name' => auth()->user()->username,
+                'name' => auth()->user()->name,
                 'email' => auth()->user()->email,
                 'phone' => auth()->user()->phone
             ];

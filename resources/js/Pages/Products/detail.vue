@@ -46,7 +46,7 @@
                         <div v-html="props.product.description" class="prose md:prose-xl"></div>
                     </div>
                     <div class="basis-1/4">
-                        <Card textHeader="Tags" :Footer="props.product.tags" />
+                        <Card textHeader="Tags" :Footer="props.product.tags" :url="props?.global?.currentUrl" />
                         <br>
                         <Card textHeader="Bagikan" textContent="Tertarik dengan produk ini? bagikan ke teman atau kerabat anda! " Footer="sharer" :url="props?.global?.currentUrl" />
                     </div>

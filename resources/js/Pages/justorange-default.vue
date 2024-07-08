@@ -28,11 +28,11 @@
         <h2 class="text-gray-500 text-2xl mb-3 animate-fade-in-delay montserrat">Your digital transformation partner.
         </h2>
         <div>
-          <button
-            class="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-4 hover:bg-gray-500 transition duration-300 montserrat cursor-pointer">Eksplor</button>
-          <button
+          <Link href="/products"
+            class="bg-blue-500 text-white font-bold py-2 px-4 rounded mr-4 hover:bg-gray-500 transition duration-300 montserrat cursor-pointer">Eksplor</Link>
+          <Link href="/contact"
             class="bg-transparent text-blue-500 font-bold py-2 px-4 rounded hover:bg-gray-500 hover:text-white transition duration-300 montserrat">Hubungi
-            Kami</button>
+            Kami</Link>
         </div>
       </div>
       <div class="flying-cubes">
