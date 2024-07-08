@@ -117,12 +117,14 @@ const selectedPayment = ref(null);
 const phone = ref('');
 const guestCheckoutConfirmation = ref(false);
 const toastConfig = ref({});
+
+
 const showToast = (msg, type) => {
     toastConfig.value.show = true;
     toastConfig.value.message = msg
     toastConfig.value.type = type;
 
-    setTimeout(dismiss, 5000); // Automatically dismiss after 2 seconds
+    setTimeout(dismiss, 5000); 
 };
 const dismiss = () => toastConfig.value.show = false;
 
