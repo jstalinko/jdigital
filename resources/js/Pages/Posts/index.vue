@@ -27,13 +27,17 @@
                 </div>
             </div>
         </div>
+
+    <Footer/>   
     </div>
+    
 </template>
 
 <script setup>
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import Navbar from '../Components/Navbar.vue';
 import Post from '../Components/Section/PostSection.vue';
+import Footer from '../Components/Footer.vue';
 import {ref} from 'vue';
 const searchQuery = ref('');
 defineProps({props: Object});

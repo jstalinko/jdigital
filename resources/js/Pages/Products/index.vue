@@ -26,6 +26,8 @@
                 </div>
             </div>
         </div>
+
+        <Footer/>
     </div>
 </template>
 
@@ -33,6 +35,7 @@
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import Navbar from '../Components/Navbar.vue';
 import Product from '../Components/Section/Product.vue';
+import Footer from '../Components/Footer.vue';
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3'
 
