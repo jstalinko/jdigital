@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class GithubController extends Controller
 {
@@ -21,25 +22,29 @@ class GithubController extends Controller
     public function getReleases(Request $request): JsonResponse
     {
         $repoName = $request->repo;
-        $releases = $this->ghClient->api('repo')
-            ->releases()
-            ->latest($this->GH_USERNAME, $repoName);
-        return response()->json($releases, 200, [], JSON_PRETTY_PRINT);
+        return response()->json($this->ghCollection('release', ['repoName' => $repoName]), 200, [], JSON_PRETTY_PRINT);
     }
     public function getAssets(Request $request): JsonResponse
     {
         $releaseId = $request->releaseid;
         $repoName = $request->repo;
-        $assets = $this->ghClient->api('repo')
-            ->releases()
-            ->all($this->GH_USERNAME, $repoName, $releaseId);
-        return response()->json($assets, 200, [], JSON_PRETTY_PRINT);
+        return response()->json($this->ghCollection('asset', ['releaseId' => $releaseId, 'repoName' => $repoName]), 200, [], JSON_PRETTY_PRINT);
     }
 
-    public function getRepos(): JsonResponse
+    public function getRepos()
     {
-        $repos = $this->ghClient->api('me')->repositories($this->GH_USERNAME);
+        return response()->json($this->ghCollection('repo', []), 200, [], JSON_PRETTY_PRINT);
+    }
 
-        return response()->json($repos, 200, [], JSON_PRETTY_PRINT);
+    public function ghCollection($method = 'repo', $params = []): array
+    {
+        if ($method == 'repo') {
+            return $this->ghClient->api('me')->repositories($this->GH_USERNAME);
+        } else if ($method == 'asset') {
+            return $this->ghClient->api('repo')->releases()->assets()->all($this->GH_USERNAME, $params['repoName'], $params['releaseId']);
+        } else if ($method == 'release') {
+           //dd($params);
+            return $this->ghClient->api('repo')->releases()->latest($this->GH_USERNAME, $params['repoName']);
+        }
     }
 }

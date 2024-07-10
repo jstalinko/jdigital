@@ -20,11 +20,17 @@ class Product extends Model
         'description',
         'image',
         'slug',
-        'active'
+        'active',
+        'product_file',
+        'product_type',
+        'github_data',
+        'views',
+        'sold'
     ];
 
     protected $casts = [
-        'tags' => 'array'
+        'tags' => 'array',
+        'github_data' => 'array'
     ];
 
     public function category(): BelongsTo
