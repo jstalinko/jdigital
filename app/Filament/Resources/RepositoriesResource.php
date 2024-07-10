@@ -21,7 +21,8 @@ class RepositoriesResource extends Resource
    // protected static ?string $model = Repositories::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
-
+    protected static ?string $navigationGroup = 'Product Management';
+    protected static ?int $navigationSort=3;
     public static function form(Form $form): Form
     {
         return $form

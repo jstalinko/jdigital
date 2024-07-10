@@ -21,7 +21,8 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-
+    protected static ?string $navigationGroup = 'Product Management';
+    protected static ?int $navigationSort=1;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     public static $repoName = 'h';
     public static $assets = [];
