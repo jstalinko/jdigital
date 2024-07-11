@@ -17,6 +17,13 @@ class Order extends Model
         'EXPIRED' => 'expired',
         'REFUND' => 'cancelled',
     ];
+    const PURCHASING_STATUS_TEXT = [
+        'unpaid' => 'UNPAID',
+        'paid' => 'PAID',
+        'cancelled' => 'FAILED',
+        'expired' => 'EXPIRED',
+        'cancelled' => 'REFUND',
+    ];
 
     public function product(): BelongsTo
     {

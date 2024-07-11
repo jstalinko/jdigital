@@ -72,6 +72,12 @@
                 <button class="bg-red-500 text-white p-2 rounded" @click="refresh">
                     <i class="mdi mdi-refresh"></i> Refresh
                 </button>
+                <a target="_blank" href="/dashboard/my-order" class="bg-blue-500 text-white p-2 rounded" >
+                    <i class="mdi mdi-invoice-list"></i> Pembelian saya
+                </a>
+                <a href="/dashboard/download" class="bg-green-500 text-white p-2 rounded" v-if="props.order.status == 'paid'">
+                    <i class="mdi mdi-cloud-download"></i> Download Item
+                </a>
             </div>
 
         </div>
@@ -109,8 +115,13 @@ const paymenteDestination = () => {
 const handlePrint = () => {
     window.print();
 }
-const refresh = () => {
-    window.location.reload();
+const refresh =async () => {
+    let response = await fetch('/api/transaction/'+propz.props.order.invoice).then(res => res.json());
+    if(response.success)
+    {
+        window.location.reload();
+    }
+
 }
 const statusUi = (status) => {
     if(status == 'unpaid' || status == 'cancelled')
@@ -124,8 +135,8 @@ const statusUi = (status) => {
     }
 }
 
-onMounted(()=>{
-    setTimeout(() => window.location.reload(),60000);
+onMounted(async ()=>{
+    setTimeout(async () => await refresh(),60000);
 });
 
 

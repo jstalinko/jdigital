@@ -15,11 +15,12 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RepositoriesResource\Pages;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\RepositoriesResource\RelationManagers;
+use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 
 class RepositoriesResource extends Resource
 {
    // protected static ?string $model = Repositories::class;
-
+   use HasPageShield;
     protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
     protected static ?string $navigationGroup = 'Product Management';
     protected static ?int $navigationSort=3;

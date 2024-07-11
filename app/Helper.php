@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Cookie;
 
 
@@ -61,14 +62,31 @@ class Helper
     {
         if (auth()->check()) {
             return [
+                'id' => auth()->user()->id,
                 'name' => auth()->user()->name,
                 'email' => auth()->user()->email,
                 'phone' => auth()->user()->phone
             ];
         } else {
+            $user = new User();
+            $email = $phone . '@c.us';
+            $name = 'user' . $phone;
+
+            $checkUser = $user->where('email', $email)->orWhere('name', $name)->first();
+
+            if (!$checkUser && $phone !== '') {
+
+                $user->name = 'user' . $phone;
+                $user->email = $phone . '@c.us';
+                $user->password = bcrypt($phone);
+                $user->save();
+                auth()->login($user,true);
+            }
+
             return [
-                'name' => 'Guest #' . $phone,
-                'email' => $phone . '@c.us',
+                'id' => $user->id ?? $checkUser->id,
+                'name' => $name,
+                'email' => $email,
                 'phone' => $phone
             ];
         }

@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JustOrangeController;
 use App\Http\Controllers\OrderController;
+use Filament\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +36,9 @@ Route::group(['prefix' => '/product'], function () {
     Route::get('/search', [JustOrangeController::class, 'searchProduct'])->name('product.search');
     Route::get('/checkout/{slug}', [OrderController::class, 'checkoutProduct'])->name('product.checkout');
     Route::get('/{slug}', [JustOrangeController::class, 'product'])->name('product.detail');
+});
+
+
+Route::group(['middleware' => 'auth:sanctum'] , function(){
+    Route::get('/download/{product_id}' , [OrderController::class , 'downloadProduct'])->name('product.download');
 });

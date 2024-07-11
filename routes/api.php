@@ -24,29 +24,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/tripay-webhook', [TripayWebhookController::class]);
 Route::post('/create-order', [OrderController::class, 'createTransaction']);
+Route::get('/transaction/{invoice}',[OrderController::class,'getTransaction']);
 Route::group(['prefix' => '/gh'], function () {
     Route::get('/get-releases/{repo}', [GithubController::class, 'getReleases'])->name('api.github.releases');
     Route::get('/get-assets/{repo}/{releaseid}', [GithubController::class, 'getAssets'])->name('api.github.assets');
     Route::get('/get-repos', [GithubController::class, 'getRepos'])->name('api.github.repos');
 
 });
-
-// Route::get('/github',function(){
-    
-//     $client = new \Github\Client();
-//     $auth =$client->authenticate('TOKEN', null, \Github\AuthMethod::ACCESS_TOKEN);
-//    // Example: Fetch latest release information
-// $repoOwner = 'jstalinko';
-// $repoName = 'cicak';
-
-// $release = $client->api('repo')->releases()->latest($repoOwner, $repoName);
-
-// // Example: Find the download URL of the asset (e.g., a zip file)
-// $assets = $client->api('repo')->releases()->assets()->all($repoOwner, $repoName, $release['id']);
-
-// $download = $client->api('repo')->releases()->assets()->show($repoOwner,$repoName,$assets[0]['id'],true);
-
-// return response()->streamDownload(function () use ($download) {
-//     echo $download;
-// }, 'cicak-1.00.zip', ['Content-Type' => 'application/zip']);
-// });
