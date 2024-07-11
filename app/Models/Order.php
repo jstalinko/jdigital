@@ -24,7 +24,7 @@ class Order extends Model
         'expired' => 'EXPIRED',
         'cancelled' => 'REFUND',
     ];
-
+    
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

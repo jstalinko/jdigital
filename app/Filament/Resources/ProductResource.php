@@ -79,7 +79,7 @@ class ProductResource extends Resource
                         self::$repoName = $state;
                         $response = (new \App\Http\Controllers\GithubController)->ghCollection('release', ['repoName' => $state]);
                         $release = (new \App\Http\Controllers\GithubController)->ghCollection('asset', ['repoName' => $state, 'releaseId' => $response['id']]);
-                        $rele = collect($release)->pluck('name', 'browser_download_url');
+                        $rele = collect($release)->pluck('name', 'url');
                         self::$assets = $rele;
                         return $set('release_id' , $response['id']);
                     })->hidden(fn (callable $get) => !$get('product_type') || $get('product_type') !== 'github'),

@@ -151,10 +151,15 @@ class OrderController extends Controller
 
         if(!$product|| !$order) return 'Product or order not found';
         if($order->user_id != auth()->user()->id) return 'Permission denied';
-        if(!file_exists(storage_path('app/repositories/'.$product_file))) return 'File not found';
-
-
+        if(!file_exists(storage_path('app/repositories/'.$product_file)) && $product_file !== 'github') return 'File not found';
+        if($product->product_type !== 'github'){
         return response()->download(storage_path('app/repositories/'.$product_file));
-
+        }else{
+            $ghdata = json_decode($product->github_data,true);
+            $gh = (new \App\Http\Controllers\GithubController)->ghCollection('download' , ['repoName' => $ghdata['repo'],'assetId' => $ghdata['asset_id'] ]);
+            $fname = sys_get_temp_dir().'/[JavaraDigital]_'.$ghdata['asset_id'].'-'.$product->slug.'.zip';
+            @file_put_contents($fname,$gh);
+            return response()->download($fname);
+        }
     }
 }

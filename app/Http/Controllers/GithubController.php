@@ -36,7 +36,7 @@ class GithubController extends Controller
         return response()->json($this->ghCollection('repo', []), 200, [], JSON_PRETTY_PRINT);
     }
 
-    public function ghCollection($method = 'repo', $params = []): array
+    public function ghCollection($method = 'repo', $params = [])
     {
         if ($method == 'repo') {
             return $this->ghClient->api('me')->repositories($this->GH_USERNAME);
@@ -45,6 +45,9 @@ class GithubController extends Controller
         } else if ($method == 'release') {
            //dd($params);
             return $this->ghClient->api('repo')->releases()->latest($this->GH_USERNAME, $params['repoName']);
+        }elseif($method == 'download')
+        {
+            return $this->ghClient->api('repo')->releases()->assets()->show($this->GH_USERNAME, $params['repoName'], $params['assetId'],true);
         }
     }
 }
