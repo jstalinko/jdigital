@@ -10,7 +10,7 @@
           <div class="basis-3/4 container  min-h-screen rounded border-2 py-5 px-5">
             <h3 class="text-3xl font-bold montserrat mb-3 mt-3 p-3 border-b-2 ">{{ props.post.title }}</h3>
 
-            <img :src="props.post.image" :alt="props.post.title"
+            <img :src="imageUrl(props.post.image)" :alt="props.post.title"
               class="max-w-full rounded mx-auto object-cover mb-5 " />
             <div v-html="props.post.content" class="prose md:prose-xl"></div>
           </div>
@@ -54,7 +54,7 @@
 <script setup>
 import Navbar from '../Components/Navbar.vue';
 import Card from '../Components/Card.vue';
-import { formatCurrency } from '#helpers';
+import { imageUrl } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import { Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';

@@ -4,21 +4,23 @@ import Cookies from "js-cookie";
 export function isFavorite(id) {
     let favorites = Cookies.get("favorites");
     favorites = favorites ? JSON.parse(favorites) : [];
-    return favorites.includes(id);
+    return favorites.some(fav => fav.id === id);
 }
-export function toggleFavorite(id) {
+export function toggleFavorite(id, name, slug) {
     let favorites = Cookies.get("favorites");
     favorites = favorites ? JSON.parse(favorites) : [];
 
-    if (isFavorite(id)) {
+    const index = favorites.findIndex(fav => fav.id === id && fav.name === name && fav.slug === slug);
+
+    if (index !== -1) {
         // Remove from favorites
-        favorites = favorites.filter((fav) => fav !== id);
-        Cookies.set("favorites", JSON.stringify(favorites), { expires: 7 });
+        favorites.splice(index, 1);
     } else {
         // Add to favorites
-        favorites.push(id);
-        Cookies.set("favorites", JSON.stringify(favorites), { expires: 7 });
+        favorites.push({ id, name, slug });
     }
+
+    Cookies.set("favorites", JSON.stringify(favorites), { expires: 7 });
 
     return favorites;
 }
@@ -55,4 +57,14 @@ export function calculateFee(price, fee_merchant, fee_customer) {
     // Hitung total fee
     const totalFee = fee.flat + (price * fee.percent) / 100;
     return totalFee;
+}
+export function imageUrl(string) {
+    const urlPattern = /^(http|https):\/\//i;
+    
+    // Check if the string matches the regular expression
+    if (urlPattern.test(string)) {
+        return string;
+    } else {
+        return '/storage/' + string;
+    }
 }

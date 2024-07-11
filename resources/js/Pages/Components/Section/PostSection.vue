@@ -12,7 +12,7 @@
 
         <div class="w-full mx-auto bg-white  overflow-hidden flex border-2 rounded" v-for="(post, index) in posts"
           :key="index">
-          <img class="w-1/3 object-cover rounded" :src="post.image" :alt="post.title">
+          <img class="w-1/3 object-cover rounded" :src="imageUrl(post.image)" :alt="post.title">
           <div class="w-2/3 p-4">
             <Link :href="'/post/' + post.slug">
             <h2 class="text-xl font-bold mb-2  hover:text-blue-500">{{ post.title }}</h2>
@@ -43,6 +43,6 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
-import { stripTags } from '#helpers';
+import { stripTags ,imageUrl} from '#helpers';
 defineProps({ posts: Object, viewAll: Boolean });
 </script>

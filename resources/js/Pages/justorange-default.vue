@@ -50,6 +50,7 @@
   </div>
 
   <CookieAlert />
+  <Favorites/>
 </template>
 
 <script setup>
@@ -59,6 +60,7 @@ import Services from './Components/Section/Services.vue';
 import ContactUs from './Components/Section/ContactUs.vue';
 import CookieAlert from './Components/Section/CookieAlert.vue';
 import PostSection from './Components/Section/PostSection.vue';
+import Favorites from './Components/Favorites.vue';
 import Footer from './Components/Footer.vue';
 import { ref, onMounted } from 'vue';
 import {Link} from '@inertiajs/vue3';
