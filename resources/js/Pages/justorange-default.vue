@@ -23,7 +23,7 @@
     <section class="flex items-center justify-center h-screen">
       <div class="text-center">
         <h1 class="text-gray-600 text-7xl font-semibold mb-4 animate-pulse montserrat">{{ clockNow }}</h1>
-        <h1 class="text-gray-600 text-7xl font-bold mb-4 animate-fade-in titillium-web-bold">Welcome to JavaraDigital
+        <h1 class="text-gray-600 text-7xl font-bold mb-4 animate-fade-in titillium-web-bold">{{ textWelcome }}
         </h1>
         <h2 class="text-gray-500 text-2xl mb-3 animate-fade-in-delay montserrat">Your digital transformation partner.
         </h2>
@@ -62,12 +62,26 @@ import CookieAlert from './Components/Section/CookieAlert.vue';
 import PostSection from './Components/Section/PostSection.vue';
 import Favorites from './Components/Favorites.vue';
 import Footer from './Components/Footer.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted ,onUnmounted} from 'vue';
 import {Link} from '@inertiajs/vue3';
 
 defineProps({props: Object });
 
 const clockNow = ref('00:00:00');
+const textWelcome = ref('Welcome to JavaraDigital');
+const texts = [
+  'Cari jasa pengembang web?',
+  'Cari pengembang aplikasi?',
+  'Konsultasi masalah TI?',
+  'Welcome to JavaraDigital'
+];
+let currentIndex = 0;
+
+const updateText = () => {
+  textWelcome.value = texts[currentIndex];
+  currentIndex = (currentIndex + 1) % texts.length;
+};
+
 const updateClock = () => {
   const now = new Date();
   const hours = String(now.getHours()).padStart(2, '0');
@@ -83,7 +97,12 @@ const scrollToSection = (id) => {
 };
 onMounted(() => {
   updateClock();
+  updateText();
   setInterval(updateClock, 1000);
+  setInterval(updateText,3000);
+});
+onUnmounted(() => {
+  clearInterval(updateText)
 });
 
 </script>
