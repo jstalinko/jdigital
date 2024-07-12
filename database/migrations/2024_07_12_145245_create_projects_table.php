@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('max_bid')->default(0);
             $table->integer('deal_bid');
             $table->longText('notes')->nullable();
-            $table->enum('payment_status' , ['down_payment','paid','unpaid']);
-            $table->enum('project_status',['applied','bid','proccess','completed','revision']);
+            $table->enum('payment_status', ['down_payment', 'paid', 'unpaid']);
+            $table->enum('project_status', ['applied', 'bid', 'proccess', 'completed', 'revision']);
             $table->timestamps();
         });
     }

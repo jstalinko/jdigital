@@ -18,39 +18,26 @@ class ProjectResource extends Resource
     protected static ?string $model = Project::class;
 
     protected static ?string $navigationIcon = 'heroicon-c-presentation-chart-bar';
-    protected static ?string $navigationGroup = 'Pembelian';
-    protected static ?int $navigationSort = 3;
-
+    protected static ?string $navigationGroup = 'Proyek saya';
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
                 Forms\Components\TextInput::make('subject')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('deadline')
-                    ->required(),
+                    ->required()->columnSpanFull(),
                 Forms\Components\TextInput::make('min_bid')
                     ->required()
-                    ->numeric(),
+                    ->numeric()->default(0),
                 Forms\Components\TextInput::make('max_bid')
                     ->required()
                     ->numeric()
-                    ->default(0),
-                Forms\Components\TextInput::make('deal_bid')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('notes')
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('payment_status')
-                    ->required(),
-                Forms\Components\TextInput::make('project_status')
-                    ->required(),
+                    ->default(0)
             ]);
     }
 
@@ -58,27 +45,40 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('subject')
-                    ->searchable(),
+                    ->searchable()->badge(),
                 Tables\Columns\TextColumn::make('deadline')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('min_bid')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('max_bid')
-                    ->numeric()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('Bid Range')
+                    ->sortable()
+                    ->getStateUsing(function ($record) {
+                        return 'Rp ' . number_format($record->min_bid) . ' ~ Rp ' . number_format($record->max_bid);
+                    }),
                 Tables\Columns\TextColumn::make('deal_bid')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('payment_status')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color(fn($state) => match($state){
+                        'unpaid' => 'warning',
+                        'paid' => 'success',
+                        'down_payment' => 'primary'
+
+                    }),
                 Tables\Columns\TextColumn::make('project_status')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color(fn($state) => match($state){
+                        'applied' => 'primary',
+                        'bid' => 'warning',
+                        'proccess' => 'warning',
+                        'completed' => 'success',
+                        'revision' => 'danger'
+                    }),
+                    Tables\Columns\TextColumn::make('notes')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
