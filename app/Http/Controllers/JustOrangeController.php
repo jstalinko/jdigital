@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper;
 use App\Models\Post;
 use Inertia\Inertia;
-use App\Helper;
+use App\Models\Contact;
 use App\Models\Product;
+
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class JustOrangeController extends Controller
 {
@@ -152,4 +156,35 @@ class JustOrangeController extends Controller
         return Inertia::render('Products/index', $data);
     }
     /**--------------------------- VIEW PRODUCT SECTION -------------------------- */
+
+
+
+    /**---------------------------- SUBMIT CONTACT ACTION ------------------------ */
+    public function submitContact(Request $request): JsonResponse
+    {
+        $validate = Validator::make(
+            $request->all(),
+            [
+                'fullname' => 'required',
+                'email' => 'string|required',
+                'phone' => 'required',
+                'subject' => 'required',
+                'message' => 'required'
+            ]
+        );
+        if ($validate->fails()) return response()->json(['success' => false, 'msg' => 'error', 'fails' => $validate->errors()], 501, [], JSON_PRETTY_PRINT);
+        $contact = new Contact();
+        $contact->fullname = $request->fullname;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->subject = $request->subject;
+        $contact->message = $request->message;
+        $contact->save();
+        $response['success'] = true;
+        $response['msg'] = 'Anda berhasil menghubungi kami, kami segera merespon terimakasih!';
+
+
+
+        return response()->json($response, 200, [], JSON_PRETTY_PRINT);
+    }
 }

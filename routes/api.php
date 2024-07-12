@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GithubController;
+use App\Http\Controllers\JustOrangeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,4 @@ Route::group(['prefix' => '/gh'], function () {
     Route::get('/get-repos', [GithubController::class, 'getRepos'])->name('api.github.repos');
 
 });
+Route::post('/contact' , [JustOrangeController::class , 'submitContact']);
