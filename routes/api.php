@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/tripay-webhook', [TripayWebhookController::class]);
+Route::post('/tripay-webhook', TripayWebhookController::class)->name('tripay.webhook');
 Route::post('/create-order', [OrderController::class, 'createTransaction']);
 Route::get('/transaction/{invoice}',[OrderController::class,'getTransaction']);
 Route::group(['prefix' => '/gh'], function () {
