@@ -84,7 +84,7 @@ class Helper
             }
 
             return [
-                'id' => $user->id ?? $checkUser->id,
+                'id' => $user?->id ?? $checkUser?->id,
                 'name' => $name,
                 'email' => $email,
                 'phone' => $phone
