@@ -16,7 +16,7 @@ class CreateProduct extends CreateRecord
         $parseAssetId = Str::afterLast($data['product_file'] , '/');
         $data['slug'] = Str::slug($data['name']);
         $data['active'] = true;
-        $data['github_data'] = json_encode(['repo' => $data['github_repo'] , 'release_id' => $data['release_id'] , 'asset_id' => $data['asset_id'] ]);
+        $data['github_data'] = json_encode(['repo' => $data['github_repo'] , 'release_id' => $data['release_id'] , 'asset_id' => $parseAssetId ]);
         return $data;
     }
 }
