@@ -65,7 +65,7 @@
   <CookieAlert />
   <Favorites />
 
-  <Navbar :mobileOnly="true"/>
+  <Navbar class="block md:hidden"/>
 </template>
 
 <script setup>

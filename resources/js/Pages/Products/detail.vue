@@ -99,7 +99,7 @@ const handleScroll = () => {
     const pageHeight = document.documentElement.scrollHeight;
 
     // Adjust the threshold as needed, e.g., 100 for 100px from the bottom
-    if (pageHeight - scrollPosition < 100) {
+    if (pageHeight - scrollPosition < 500) {
         showButton.value = true;
     } else {
         showButton.value = false;

@@ -1,11 +1,9 @@
 <template>
-  <nav class=" p-4 shadow-md">
+  <nav class=" p-4 shadow-md" >
     <div class="container mx-auto flex justify-between items-center">
       <img src="/logo.png" class="w-32 md:w-48 dark:contrast-200" alt="Logo JavaraDigital">
-
-
       <!-- Daftar Menu -->
-      <div class="hidden md:flex md:items-center md:space-x-6" v-if="!mobileOnly">
+      <div class="hidden md:flex md:items-center md:space-x-6" >
         <Link href="/" class="text-blue-500 dark:text-[#BCCCDC] font-bold hover:underline montserrat">
         <i class="mdi mdi-home"></i> Beranda
         </Link>
@@ -66,12 +64,7 @@
 import { ref, onMounted } from 'vue';
 import { Link } from '@inertiajs/vue3'; // Pastikan import Link dari Inertia
 
-defineProps({mobileOnly: Boolean || false});
 
-function scrollToSection(sectionId) {
-  // Implementasi fungsi scrollToSection sesuai kebutuhan Anda
-  console.log(`Scroll to section: ${sectionId}`);
-}
 
 const isDarkMode = ref(false);
 
