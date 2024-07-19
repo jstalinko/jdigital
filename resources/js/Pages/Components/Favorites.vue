@@ -7,10 +7,10 @@
       <i class="mdi mdi-heart"></i>
     </button>
     
-    <div v-if="showFavorites" class="fixed bottom-20 right-4 bg-white border p-4 rounded-lg shadow-lg w-64 max-h-64 overflow-y-auto">
+    <div v-if="showFavorites" class="fixed bottom-20 right-4 bg-white dark:bg-transparent border p-4 rounded-lg shadow-lg w-64 max-h-64 overflow-y-auto">
       <h3 class="text-lg font-bold mb-2">Produk Favorit</h3>
       <ul>
-        <li v-for="product in favorites" :key="product" class="mb-2 hover:bg-gray-300 p-1 rounded cursor-pointer">
+        <li v-for="product in favorites" :key="product" class="mb-2 hover:bg-gray-300 dark:hover:bg-gray-600 p-1 rounded cursor-pointer">
             <Link :href="'/product/'+product.slug"><span>{{ product.name }}</span></Link>
         </li>
       </ul>
