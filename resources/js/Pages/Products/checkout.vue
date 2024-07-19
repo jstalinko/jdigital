@@ -85,17 +85,19 @@
                             </li>
                         </ul>
                     </div>
+                
 
                     <button v-show="guestCheckoutConfirmation || props.userData.phone !== ''" @click="handleCheckout"
-                        class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i
+                        class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center mb-20"><i
                             class="mdi mdi-cart"></i> Checkout !</button>
                     <br><br>
+                    
                 </div>
             </div>
         </div>
 
         <Toast :show="toastConfig.show" :message="toastConfig.message" :type="toastConfig.type" />
-
+        <Footer/>
     </div>
 </template>
 
@@ -104,6 +106,7 @@ import Navbar from '../Components/Navbar.vue';
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import PaymentChannel from '../Components/PaymentChannel.vue';
 import Toast from '../Components/Toast.vue';
+import Footer from '../Components/Footer.vue';
 import { formatCurrency, calculateFee } from '#helpers';
 import { router, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';

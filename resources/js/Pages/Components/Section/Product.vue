@@ -1,6 +1,6 @@
 <template>
    <div id="productSection">
-    <section class="py-12 bg-gray-100 mt-10 min-h-screen" >
+    <section class="py-12 bg-gray-100 dark:dark:bg-[#102A43] dark:text-[#BCCCDC] mt-10 min-h-screen" >
       <div class="container mx-auto">
         <h2 class="text-3xl font-bold text-center mb-8 titillium-web-semibold"><i class="mdi mdi-cart-heart"></i> {{ headTitle ?? 'Produk Kami'}}</h2>
 
@@ -16,7 +16,7 @@
        
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8 mb-5">
+        <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8 mb-5 m-2">
           <div v-for="product in products" :key="product.id" class="rounded-lg border-2 border-gray-200 overflow-hidden hover:shadow-md">
          
             <img :src="imageUrl(product.image)" :alt="product.name" class="w-full h-48 object-cover">
@@ -37,7 +37,7 @@
   
       
         <div class="flex items-center justify-center" v-if="viewAll !== true">
-      <Link href="/products" class="mt-10 mb-5 text-gray-600 border-2 rounded-full p-2 hover:border-black">
+      <Link href="/products" class="mt-10 mb-5 text-gray-600 dark:text-gray-100 dark:hover:bg-gray-600 dark:hover:border-gray-100 border-2 rounded-full p-2 hover:border-black">
         Tampilkan Semua
       </Link>
     </div>      

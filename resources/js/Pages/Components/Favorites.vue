@@ -2,7 +2,7 @@
   <div>
     <button 
       @click="toggleFavorites"
-      class="fixed bottom-4 right-4 bg-red-500 text-white px-5 py-4 rounded-full shadow-lg hover:bg-red-600"
+      class="fixed bottom-24 md:bottom-4 right-4 bg-red-500 text-white px-5 py-4 rounded-full shadow-lg hover:bg-red-600"
     >
       <i class="mdi mdi-heart"></i>
     </button>

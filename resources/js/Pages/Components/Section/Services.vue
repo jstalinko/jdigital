@@ -1,15 +1,15 @@
 <template>
    <div id="serviceSection">
-    <section class="bg-white py-12">
+    <section class="py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-gray-100 dark:text-[#BCCCDC] sm:text-4xl">
             Apa yang Kami Tawarkan
           </p>
         </div>
         <div class="mt-10">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <!-- Replace with an appropriate icon -->
@@ -19,12 +19,12 @@
 
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Pengembangan Web</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Pengembangan Web</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami mengembangkan situs web yang responsif dan efisien untuk berbagai kebutuhan bisnis Anda.
               </p>
             </div>
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
@@ -33,12 +33,12 @@
 
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Pengembangan Aplikasi Mobile</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Pengembangan Aplikasi Mobile</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami menyediakan solusi aplikasi mobile yang inovatif dan user-friendly untuk kebutuhan bisnis Anda.
               </p>
             </div>
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
@@ -47,12 +47,12 @@
 
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Pemasaran Digital</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Pemasaran Digital</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami menawarkan layanan pemasaran digital yang efektif untuk meningkatkan visibilitas dan keterlibatan bisnis Anda.
               </p>
             </div>
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
@@ -61,12 +61,12 @@
 
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Konsultasi TI</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Konsultasi TI</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami menyediakan layanan konsultasi TI yang membantu bisnis Anda mengambil keputusan teknologi yang tepat.
               </p>
             </div>
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
@@ -74,12 +74,12 @@
 </svg>
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Custom App Development</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Custom App Development</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami menciptakan solusi perangkat lunak kustom yang sesuai dengan kebutuhan spesifik bisnis Anda.
               </p>
             </div>
-            <div class="bg-gray-100 p-6 rounded-lg border-2 hover:shadow-lg">
+            <div class="bg-gray-100 dark:bg-[#18436b] p-6 rounded-lg border-2 hover:shadow-lg">
               <div class="text-center mb-4">
                 <span class="inline-flex items-center justify-center p-3 bg-indigo-500 rounded-md shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-white">
@@ -89,8 +89,8 @@
 
                 </span>
               </div>
-              <h3 class="text-xl font-semibold text-gray-900 text-center">Maintenance & Support</h3>
-              <p class="mt-4 text-gray-600 text-center">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center">Maintenance & Support</h3>
+              <p class="mt-4 text-gray-600 dark:text-gray-200 text-center">
                 Kami menyediakan layanan pemeliharaan dan dukungan untuk memastikan sistem Anda berjalan dengan lancar.
               </p>
             </div>

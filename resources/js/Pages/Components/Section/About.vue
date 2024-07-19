@@ -1,26 +1,26 @@
 <template>
     <div id="aboutSection">
-      <section class="bg-white py-12">
+      <section class="bg-white dark:bg-[#102A43] py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
          
-          <h1 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl montserrat">
+          <h1 class="dark:text-[#BCCCDC] mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl montserrat">
             Tentang Kami
           </h1>
         </div>
         <div class="mt-10">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 dark:text-[#BCCCDC]" >
             <div>
-              <img src="/about.svg" alt="About Us" class="rounded-lg ">
+              <img src="/about.svg" alt="About Us" class="rounded-lg dark:contrast-200">
             </div>
             <div class="flex flex-col justify-center">
-                <p class="text-lg text-gray-700 mb-4">
+                <p class="text-lg text-gray-700 mb-4 dark:text-[#BCCCDC]">
               Javaradigital adalah platform digital dan pengembangan perangkat lunak. Didirikan dengan misi untuk berinovasi dan memberikan solusi digital terbaik, kami telah tumbuh menjadi mitra terpercaya bagi bisnis yang ingin berkembang di era digital.
             </p>
-            <p class="text-lg text-gray-700 mb-4">
+            <p class="text-lg text-gray-700 mb-4 dark:text-[#BCCCDC]">
               Tim profesional kami yang berdedikasi bekerja keras untuk menciptakan solusi perangkat lunak kustom yang memenuhi kebutuhan unik setiap klien. Mulai dari pengembangan web dan aplikasi mobile hingga pemasaran digital dan konsultasi TI, kami menawarkan berbagai layanan lengkap untuk membantu bisnis meraih kesuksesan.
             </p>
-            <p class="text-lg text-gray-700">
+            <p class="text-lg text-gray-700 dark:text-[#BCCCDC]">
               Di Javaradigital, kami percaya pada kekuatan teknologi untuk mengubah industri dan mendorong kemajuan. Komitmen kami terhadap keunggulan, inovasi, dan kepuasan pelanggan membuat kami unggul sebagai pemimpin di dunia digital. Bergabunglah dengan kami dalam perjalanan untuk membentuk masa depan transformasi digital.
             </p>
             </div>

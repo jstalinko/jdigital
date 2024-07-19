@@ -12,7 +12,7 @@
                     <form @submit.prevent="handleSearch">
                         <div class="flex items-center  border-b-2 border-gray-200 py-2">
                             <input v-model="searchQuery" type="text" placeholder="Search..."
-                                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none">
+                                class="appearance-none bg-transparent border-none w-full text-gray-700 dark:text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none">
                             <button type="submit" @click="handleSearch"
                                 class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">
                                 <i class="mdi mdi-magnify"></i> Cari

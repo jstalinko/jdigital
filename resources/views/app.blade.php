@@ -88,7 +88,7 @@ p{
 </style>
     @inertiaHead
   </head>
-  <body>
+  <body class="dark:dark:bg-[#102A43] dark:text-[#BCCCDC]">
     @inertia
   </body>
 </html>

@@ -44,8 +44,8 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row mt-5 ">
-                    <div class="basis-3/4 container  min-h-screen border-2 px-10 py-10 rounded">
-                        <div v-html="props.product.description" class="prose md:prose-xl"></div>
+                    <div class="basis-3/4 container   min-h-screen border-2 px-10 py-10 rounded">
+                        <div v-html="props.product.description" class="prose md:prose-xl dark:text-gray-100"></div>
                     </div>
                     <div class="basis-1/4">
                         <Card textHeader="Tags" :Footer="props.product.tags" :url="props?.global?.currentUrl" />
@@ -58,7 +58,7 @@
             </div>
 
             <!-- floating checkout -->
-            <div class="fixed bottom-0 inset-x-0 pb-2 sm:pb-5" v-if="showButton">
+            <div class="fixed bottom-0 inset-x-0 pb-24 md:pb-2" v-if="showButton">
                 <div class="max-w-7xl sm:px-6 lg:px-8  mx-auto">
                     <div class="flex items-center">
                         <Link :href="'/product/checkout/' + props.product.slug"
@@ -70,6 +70,8 @@
 
         </div>
         <Favorites />
+
+        <Footer/>
     </div>
 </template>
 
@@ -79,6 +81,7 @@ import Card from '../Components/Card.vue';
 import { formatCurrency, imageUrl, toggleFavorite, loadFavorites } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import Favorites from '../Components/Favorites.vue';
+import Footer from '../Components/Footer.vue';
 import { Link } from '@inertiajs/vue3';
 import { ref, onMounted } from 'vue';
 defineProps({ props: Object });

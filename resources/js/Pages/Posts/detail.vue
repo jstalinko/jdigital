@@ -48,6 +48,8 @@
         </div>
       </div>
     </div>
+
+    <Footer/>
   </div>
 </template>
 
@@ -56,6 +58,7 @@ import Navbar from '../Components/Navbar.vue';
 import Card from '../Components/Card.vue';
 import { imageUrl } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
+import Footer from '../Components/Footer.vue';
 import { Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
 defineProps({ props: Object });

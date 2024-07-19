@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-gray-100 p-3 rounded-md w-full" aria-label="Breadcrumb">
+    <nav class=" p-3 rounded-md w-full" aria-label="Breadcrumb">
       <ol class="list-reset flex">
         <li v-for="(crumb, index) in breadcrumbs" :key="index" class="flex items-center">
           <Link
