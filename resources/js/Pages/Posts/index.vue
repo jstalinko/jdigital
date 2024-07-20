@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Title :title="'Semua Postingan'"/>
         <Navbar />
 
         <div class="container mx-auto">
@@ -63,6 +64,7 @@ import Post from '../Components/Section/PostSection.vue';
 import Footer from '../Components/Footer.vue';
 import { ref, computed } from 'vue';
 import { Link, router } from '@inertiajs/vue3';
+import Title from '../Components/Section/Title.vue';
 const searchQuery = ref('');
 const propz = defineProps({ props: Object });
 

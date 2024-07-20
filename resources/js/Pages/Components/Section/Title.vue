@@ -2,7 +2,7 @@
 
     <Head>
         <title v-if="title === undefined">JavaraDigital - Solusi digital untuk bisnis anda.</title>
-        <title v-else>{{ title }} - JavaraDigital</title>
+        <title v-if="title !== undefined">{{ title }} - JavaraDigital</title>
 
         <meta name="title" content="JavaraDigital">
         <meta name="description" content="Solusi Digital Untuk Bisnis Anda">

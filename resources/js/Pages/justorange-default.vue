@@ -1,4 +1,5 @@
 <template>
+  <Title/>
   <div>
     <nav class="p-4">
       <div class="container mx-auto flex justify-between items-center ">
@@ -80,6 +81,7 @@ import Footer from './Components/Footer.vue';
 import Navbar from './Components/Navbar.vue';
 import { ref, onMounted, onUnmounted } from 'vue';
 import { Link } from '@inertiajs/vue3';
+import Title from './Components/Section/Title.vue';
 
 defineProps({ props: Object });
 

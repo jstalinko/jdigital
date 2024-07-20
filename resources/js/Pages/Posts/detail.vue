@@ -1,4 +1,6 @@
 <template>
+    <Title :title="props.post.title"/>
+  
   <div>
     <Navbar />
 
@@ -61,6 +63,7 @@ import Breadcumbs from '../Components/Breadcumbs.vue';
 import Footer from '../Components/Footer.vue';
 import { Link, router } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import Title from '../Components/Section/Title.vue';
 defineProps({ props: Object });
 const searchQuery = ref('');
 const handleClick = async () => {

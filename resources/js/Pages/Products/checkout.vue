@@ -1,4 +1,5 @@
 <template>
+    
     <Navbar />
     <div class="container mx-auto mt-5">
         <Breadcumbs
