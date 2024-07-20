@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Title :title="headTitle"/>
         <Navbar />
 
         <div class="container mx-auto">
@@ -36,6 +37,7 @@ import Breadcumbs from '../Components/Breadcumbs.vue';
 import Navbar from '../Components/Navbar.vue';
 import Product from '../Components/Section/Product.vue';
 import Footer from '../Components/Footer.vue';
+import Title from '../Components/Section/Title.vue';
 import { ref } from 'vue';
 import { router } from '@inertiajs/vue3'
 

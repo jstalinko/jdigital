@@ -1,5 +1,5 @@
 <template>
-    
+    <Title :title="'Checkout '+props.product.name"/>
     <Navbar />
     <div class="container mx-auto mt-5">
         <Breadcumbs
@@ -104,6 +104,7 @@
 
 <script setup>
 import Navbar from '../Components/Navbar.vue';
+import Title from '../Components/Section/Title.vue';
 import Breadcumbs from '../Components/Breadcumbs.vue';
 import PaymentChannel from '../Components/PaymentChannel.vue';
 import Toast from '../Components/Toast.vue';

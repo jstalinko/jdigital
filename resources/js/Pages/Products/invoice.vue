@@ -1,4 +1,5 @@
 <template>
+    <Title :title="'INVOICE '+props.order.invoice"/>
     <div class="bg-gray-200 min-h-screen">
         <br>
         <div
@@ -88,6 +89,7 @@
 <script setup>
 import { ref,onMounted } from 'vue';
 import Accordion from '../Components/Accordion.vue';
+import Title from '../Components/Section/Title.vue';
 import { formatCurrency } from '#helpers';
 const propz = defineProps({ props: Object });
 

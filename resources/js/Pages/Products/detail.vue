@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Title :title="'Jual '+props.product.name"/>
         <Navbar />
 
         <div class="container mx-auto mt-5">
@@ -77,6 +78,7 @@
 
 <script setup>
 import Navbar from '../Components/Navbar.vue';
+import Title from '../Components/Section/Title.vue';
 import Card from '../Components/Card.vue';
 import { formatCurrency, imageUrl, toggleFavorite, loadFavorites } from '#helpers';
 import Breadcumbs from '../Components/Breadcumbs.vue';
