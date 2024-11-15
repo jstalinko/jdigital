@@ -38,10 +38,7 @@ class ProductResource extends Resource
                         ->options(Category::where('active', true)->pluck('name', 'id'))
                         ->native(false),
                     Forms\Components\TextInput::make('name')
-                        ->required()->reactive()->afterStateUpdated(function(Set $set,$state){
-                            return $set('slug',$state);
-                        }),
-                    Forms\Components\TextInput::make('slug'),
+                        ->required(),
                     Forms\Components\TagsInput::make('tags')
                         ->required()
                         ->columnSpanFull(),

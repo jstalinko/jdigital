@@ -1,58 +1,61 @@
 <template>
   <Title/>
   <div>
-    <nav class="p-4">
-      <div class="container mx-auto flex justify-between items-center ">
-        <img src="/logo.png" class="w-48 dark:contrast-200">
-        <div class="hidden md:block">
-          <a class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat" href="#"><i
-              class="mdi mdi-home"></i>
-            Beranda</a>
-          <Link class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat"
-            href="#productSection" @click="scrollToSection('productSection')"><i class="mdi mdi-cart"></i>
-          Produk</Link>
+    <div>
+  <nav class="p-4 border-b-4 border-black">
+    <div class="container mx-auto flex justify-between items-center">
+      <img src="/logo.png" class="w-48 hover:grayscale hover:contrast-150">
+      <div class="hidden md:block">
+        <Link
+          class="text-black bg-yellow-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-yellow-500 montserrat shadow-neobrutal"
+          to="#"><i class="mdi mdi-home"></i> Beranda</Link>
+        <Link
+          class="text-black bg-pink-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-pink-500 montserrat shadow-neobrutal"
+          to="#productSection" @click="scrollToSection('productSection')"><i class="mdi mdi-cart"></i> Produk</Link>
+        <Link
+          class="text-black bg-green-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-green-500 montserrat shadow-neobrutal"
+          to="#aboutSection" @click="scrollToSection('aboutSection')"><i class="mdi mdi-information"></i> Tentang</Link>
+        <Link
+          class="text-black bg-blue-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-blue-500 montserrat shadow-neobrutal"
+          to="#serviceSection" @click="scrollToSection('serviceSection')"><i class="mdi mdi-face-agent"></i> Layanan</Link>
+        <Link
+          class="text-black bg-orange-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-orange-500 montserrat shadow-neobrutal"
+          to="#contactSection" @click="scrollToSection('contactSection')"><i
+          class="mdi mdi-email-heart-outline"></i> Kontak</Link>
+        <Link
+          class="text-black bg-purple-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-purple-500 montserrat shadow-neobrutal"
+          to="/dashboard"><i class="mdi mdi-account"></i> Akun</Link>
+        <button @click="toggleDarkMode" class="ml-3 px-4 py-2 border-2 border-black bg-gray-300">
+          <i :class="isDarkMode ? 'mdi mdi-weather-sunny text-yellow-500' : 'mdi mdi-weather-night text-black'"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <section class="flex items-center justify-center h-screen bg-pink-100">
+    <div class="text-center">
+      <h1 class="text-black text-5xl md:text-8xl font-extrabold mb-4 montserrat border-4 border-black p-4 inline-block">
+        {{ clockNow }}</h1>
+        <br>
+      <h1 class="text-black text-5xl md:text-8xl font-extrabold mb-4 titillium-web-bold  p-4 ">
+        {{ textWelcome }}</h1>
+        <br>
+      <h2 class="text-black text-2xl md:text-4xl font-bold mb-4 montserrat ">
+        Your digital transformation partner.</h2>
+      <div>
+        <Link to="/products"
+          class="bg-yellow-400 border-4 border-black text-black font-bold py-3 px-6 rounded-none hover:bg-yellow-500 transition montserrat shadow-neobrutal">
+          Eksplor</Link>&nbsp;&nbsp;
+        <Link to="/contact"
+          class="bg-transparent border-4 border-black text-black font-bold py-3 px-6 rounded-none hover:bg-black hover:text-white transition montserrat shadow-neobrutal">
+          Hubungi Kami</Link>
+      </div>
+    </div>
+    <div class="flying-cubes">
+      <div v-for="i in 10" :key="i" class="cube border-2 border-black bg-gray-100"></div>
+    </div>
+  </section>
+</div>
 
-          <Link class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat" href="#aboutSection"
-            @click="scrollToSection('aboutSection')"><i class="mdi mdi-information"></i> Tentang</Link>
-          <Link class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat"
-            href="#serviceSection" @click="scrollToSection('serviceSection')"><i class="mdi mdi-face-agent"></i>
-          Layanan</Link>
-          <Link class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat"
-            href="#contactSection" @click="scrollToSection('contactSection')"><i
-            class="mdi mdi-email-heart-outline"></i> Kontak</Link>
-          <a class="dark:text-[#BCCCDC] text-blue-500 font-bold hover:underline mx-3 montserrat" href="/dashboard"><i
-              class="mdi mdi-account"></i>
-            Akun</a>
-          <button @click="toggleDarkMode" class="ml-3 p-2 rounded bg-gray-200 dark:bg-gray-700">
-            <i :class="isDarkMode ? 'mdi mdi-weather-sunny text-yellow-500' : 'mdi mdi-weather-night'"></i>
-          </button>
-        </div>
-      </div>
-    </nav>
-    <section class="flex items-center justify-center h-screen">
-      <div class="text-center">
-        <h1 class="dark:text-[#BCCCDC] text-gray-600 text-4xl md:text-7xl font-semibold mb-4 animate-pulse montserrat">{{ clockNow
-          }}</h1>
-        <h1 class="dark:text-[#BCCCDC] text-gray-600 text-4xl md:text-7xl font-bold mb-4 animate-fade-in titillium-web-bold">{{
-          textWelcome }}
-        </h1>
-        <h2 class="dark:text-[#BCCCDC] text-gray-500 text-2xl mb-3 animate-fade-in-delay montserrat">Your digital
-          transformation partner.
-        </h2>
-        <div>
-          <Link href="/products"
-            class="dark:bg-blue-400 bg-blue-500 text-white font-bold py-2 px-4 rounded mr-4 hover:bg-gray-500 transition duration-300 montserrat cursor-pointer">
-          Eksplor</Link>
-          <Link href="/contact"
-            class="bg-transparent dark:text-blue-400 text-blue-500 font-bold py-2 px-4 rounded hover:bg-gray-500 hover:text-white transition duration-300 montserrat">
-          Hubungi
-          Kami</Link>
-        </div>
-      </div>
-      <div class="flying-cubes ">
-        <div v-for="i in 10" :key="i" class="cube"></div>
-      </div>
-    </section>
     <About />
     <Services />
     <Product :products="props.products" :categories="props.categories" />
@@ -264,4 +267,13 @@ body {
   left: 90%;
   animation-duration: 36s
 }
+
+/* Optional: Custom Neobrutalist shadow effect */
+.shadow-neobrutal {
+  box-shadow: 6px 6px 0px 0px black;
+}
+.shadow-neobrutal:hover{
+  box-shadow: 1px 1px 0px 0px black;
+}
 </style>
+
