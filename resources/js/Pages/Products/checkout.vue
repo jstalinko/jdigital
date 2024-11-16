@@ -1,73 +1,94 @@
 <template>
-    <Title :title="'Checkout '+props.product.name"/>
-    <Navbar />
-    <div class="container mx-auto mt-5">
-        <Breadcumbs
-            :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' }, { label: props.product.category.name, href: '/categories' }, { label: props.product.name, href: '?' }]" />
+    <div>
+        <Title :title="'Checkout ' + props.product.name" />
+        <Navbar />
 
-        <div class="mt-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex justify-center">
-                    <div>
-                        <img :src="props.product.image" class="object-cover rounded max-w-full h-auto">
+        <div class="container mx-auto mt-5">
+            <Breadcumbs
+                :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' }, { label: props.product.category.name, href: '/categories' }, { label: props.product.name, href: '?' }]" />
 
-                        <h3 class="font-bold text-2xl montserrat mt-5">{{ props.product.name }}</h3>
+            <div class="mt-10 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-blue-100 p-5 border-4 border-black shadow-neobrutal rounded">
+                    <div class="flex justify-center items-center">
+                        <div class="p-5 bg-white border-4 border-black shadow-neobrutal rounded">
+                            <img :src="props.product.image" class="object-cover rounded max-w-full h-auto border-4 border-black" />
 
-                        <ul class="mt-2 p-3">
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori
-                                    :</span> <span>{{ props?.product?.category?.name }}</span> </li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cash"></i> Harga
-                                    :</span> <span class="font-bold ">{{ formatCurrency(props?.product?.price) }}</span>
-                            </li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat
-                                    :</span> <span>{{ props?.product?.views }}x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cart-outline"></i>
-                                    Terjual :</span> <span>{{ props?.product?.sold }}x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-update"></i> Update
-                                    :</span> <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i>
-                                    Publish
-                                    :</span> <span>{{ new Date(props?.product?.created_at).toDateString() }}</span></li>
-                        </ul>
-                        <br><br>
-                    </div>
-                </div>
-                <div>
-                    <PaymentChannel :channels="props.paymentChannel.data" :price="props.product.price"
-                        @payment-selected="handlePaymentSelected" />
+                            <h3 class="font-bold text-3xl montserrat mt-5 text-center text-black">
+                                {{ props.product.name }}
+                            </h3>
 
-                    <h3 class="font-bold text-xl montserrat mt-4"> Payment Detail </h3>
-                    <ul class="mt-2 p-3">
-                        <li class="p-2 border-b-2 flex justify-between">
-                            <span>@ Harga :</span> <span class="font-bold">{{ formatCurrency(props?.product?.price)
-                                }}</span>
-                        </li>
-                        <li class="p-2 border-b-2 flex justify-between" v-if="selectedPayment">
-                            <span>@ Metode Bayar :</span><span class="font-bold">{{ selectedPayment.name }}</span>
-                        </li>
-                        <li class="p-2 border-b-2 flex justify-between" v-if="selectedPayment">
-                            <span>@ Biaya Merchant :</span><span class="font-bold">{{
-                                formatCurrency(calculateFee(props.product.price, selectedPayment.fee_merchant,
-                                    selectedPayment.fee_customer))
-                                }}</span>
-                        </li>
-                        <li class="p-2 border-b-2 flex justify-between" v-if="selectedPayment">
-                            <span>@ Total Bayar :</span><span class="font-bold">{{ formatCurrency(props.product.price +
-                                calculateFee(props.product.price, selectedPayment.fee_merchant,
-                                    selectedPayment.fee_customer))
-                                }}</span>
-                        </li>
-                    </ul>
-                    <div class="bg-red-400 text-white p-2 text-center rounded mt-2 mb-2"
-                        v-if="props.userData.phone === '' && !guestCheckoutConfirmation">
-                        Guest checkout tidak di anjurkan, kami menganjurkan anda membuat akun/login ke akun terlebih
-                        dahulu sebelum checkout.
-                        <br>
-                        <button class="bg-red-600 rounded p-2" @click="continueCheckout">Lanjutkan saja</button>&nbsp;
-                        <Link href="/dashboard/login" class="bg-blue-600 rounded p-2">Login dulu</Link>
+                            <ul class="mt-2 p-3 bg-green-100 border-4 border-black shadow-neobrutal rounded">
+                                <li class="p-2 border-b-2 border-black flex justify-between">
+                                    <span><i class="mdi mdi-tag"></i> Kategori:</span> 
+                                    <span>{{ props?.product?.category?.name }}</span>
+                                </li>
+                                <li class="p-2 border-b-2 border-black flex justify-between">
+                                    <span><i class="mdi mdi-cash"></i> Harga:</span> 
+                                    <span class="font-bold">{{ formatCurrency(props?.product?.price) }}</span>
+                                </li>
+                                <li class="p-2 border-b-2 border-black flex justify-between">
+                                    <span><i class="mdi mdi-eye"></i> Dilihat:</span> 
+                                    <span>{{ props?.product?.views }}x</span>
+                                </li>
+                                <li class="p-2 border-b-2 border-black flex justify-between">
+                                    <span><i class="mdi mdi-cart-outline"></i> Terjual:</span> 
+                                    <span>{{ props?.product?.sold }}x</span>
+                                </li>
+                                <li class="p-2 border-b-2 border-black flex justify-between">
+                                    <span><i class="mdi mdi-update"></i> Update:</span> 
+                                    <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span>
+                                </li>
+                                <li class="p-2 flex justify-between">
+                                    <span><i class="mdi mdi-calendar"></i> Publish:</span> 
+                                    <span>{{ new Date(props?.product?.created_at).toDateString() }}</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div class="flex justify-between" v-if="guestCheckoutConfirmation">
+                    <div class="bg-pink-100 p-5 border-4 border-black shadow-neobrutal rounded">
+                        <PaymentChannel
+                            :channels="props.paymentChannel.data"
+                            :price="props.product.price"
+                            @payment-selected="handlePaymentSelected"
+                            class="mb-4"
+                        />
+
+                        <div class="bg-white p-5 border-4 border-black shadow-neobrutal rounded">
+                            <h3 class="font-bold text-2xl text-black text-center montserrat">Payment Detail</h3>
+
+                            <ul class="mt-2">
+                                <li class="p-2 border-b-4 border-black flex justify-between">
+                                    <span>@ Harga:</span>
+                                    <span class="font-bold">{{ formatCurrency(props?.product?.price) }}</span>
+                                </li>
+                                <li class="p-2 border-b-4 border-black flex justify-between" v-if="selectedPayment">
+                                    <span>@ Metode Bayar:</span>
+                                    <span class="font-bold">{{ selectedPayment.name }}</span>
+                                </li>
+                                <li class="p-2 border-b-4 border-black flex justify-between" v-if="selectedPayment">
+                                    <span>@ Biaya Merchant:</span>
+                                    <span class="font-bold">
+                                        {{ formatCurrency(calculateFee(props.product.price, selectedPayment.fee_merchant, selectedPayment.fee_customer)) }}
+                                    </span>
+                                </li>
+                                <li class="p-2 flex justify-between" v-if="selectedPayment">
+                                    <span>@ Total Bayar:</span>
+                                    <span class="font-bold">
+                                        {{ formatCurrency(props.product.price + calculateFee(props.product.price, selectedPayment.fee_merchant, selectedPayment.fee_customer)) }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div v-if="props.userData.phone === '' && !guestCheckoutConfirmation" class="bg-red-400 p-5 mt-5 border-4 border-black shadow-neobrutal text-white rounded text-center">
+                            <p>Guest checkout tidak dianjurkan. Silakan login atau buat akun untuk pengalaman lebih baik.</p>
+                            <div class="mt-3">
+                                <button class="bg-red-600 hover:bg-red-800 p-3 border-4 border-black shadow-neobrutal rounded text-white" @click="continueCheckout">Lanjutkan Saja</button>
+                                <Link href="/dashboard/login" class="bg-blue-600 hover:bg-blue-800 p-3 border-4 border-black shadow-neobrutal rounded text-white ml-2">Login Dulu</Link>
+                            </div>
+                        </div>
+                        <div class="flex justify-between" v-if="guestCheckoutConfirmation">
                         <b class="montserrat text-md mt-2">Nomer HP Anda :</b>
                         <input class="border-2 w-10/12 mt-2 mb-2 p-2 rounded" v-model="phone"
                             placeholder="masukan nomer hp / whatsapp anda" />
@@ -86,19 +107,20 @@
                             </li>
                         </ul>
                     </div>
-                
 
-                    <button v-show="guestCheckoutConfirmation || props.userData.phone !== ''" @click="handleCheckout"
-                        class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center mb-20"><i
-                            class="mdi mdi-cart"></i> Checkout !</button>
-                    <br><br>
-                    
+                        <div v-if="guestCheckoutConfirmation || props.userData.phone !== ''" class="mt-5">
+                            <button @click="handleCheckout" class="bg-blue-500 hover:bg-blue-600 p-3 w-full border-4 border-black shadow-neobrutal rounded text-white text-lg">
+                                <i class="mdi mdi-cart"></i> Checkout!
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
 
         <Toast :show="toastConfig.show" :message="toastConfig.message" :type="toastConfig.type" />
-        <Footer/>
+        <Footer />
     </div>
 </template>
 

@@ -25,9 +25,7 @@
         <Link
           class="text-black bg-purple-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-purple-500 montserrat shadow-neobrutal"
           to="/dashboard"><i class="mdi mdi-account"></i> Akun</Link>
-        <button @click="toggleDarkMode" class="ml-3 px-4 py-2 border-2 border-black bg-gray-300">
-          <i :class="isDarkMode ? 'mdi mdi-weather-sunny text-yellow-500' : 'mdi mdi-weather-night text-black'"></i>
-        </button>
+       
       </div>
     </div>
   </nav>

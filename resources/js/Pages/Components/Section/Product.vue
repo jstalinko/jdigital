@@ -38,7 +38,7 @@
           <div
             v-for="product in products"
             :key="product.id"
-            class="bg-white border-black border-4 overflow-hidden hover:bg-gray-100"
+            class="bg-white border-black border-4 overflow-hidden hover:bg-gray-100 shadow-neobrutal"
           >
             <img
               :src="imageUrl(product.image)"

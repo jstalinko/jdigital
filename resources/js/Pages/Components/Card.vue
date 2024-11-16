@@ -23,7 +23,7 @@
           </button>
         </div>
         <div v-else-if="typeof Footer === 'string' && Footer == 'sharer'">
-          <div class="flex space-x-4 justify-center">
+          <div class="flex space-x-4 justify-center p-4">
             <button
               @click="share('facebook')"
               class="bg-blue-600 text-white border-4 border-black py-2 px-4  flex items-center space-x-2 hover:bg-blue-700 shadow-neobrutal"

@@ -3,22 +3,32 @@
         <Title :title="headTitle"/>
         <Navbar />
 
-        <div class="container mx-auto">
+        <div class="w-full mx-auto">
             <div class="mt-10">
                 <Breadcumbs :breadcrumbs="breadcrumbs" />
 
                 <div class="mt-5">
-                    <h3 class="text-2xl text-center montserrat font-bold">Cari Produk</h3>
-                    <form @submit.prevent="handleSearch">
-                        <div class="flex items-center  border-b-2 border-gray-200 py-2">
-                            <input v-model="searchQuery" type="text" placeholder="Search..."
-                                class="appearance-none bg-transparent border-none w-full text-gray-700 dark:text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none">
-                            <button type="submit" @click="handleSearch"
-                                class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">
-                                <i class="mdi mdi-magnify"></i> Cari
-                            </button>
-                        </div>
-                    </form>
+                    <div class="max-w-7xl mx-auto">
+                        <h3 class="text-2xl text-center montserrat font-bold">Cari Produk</h3>
+                        <form @submit.prevent="handleSearch" class="p-4 bg-yellow-200 border-4 border-black">
+    <div class="flex items-center space-x-2">
+        <input 
+            v-model="searchQuery" 
+            type="text" 
+            placeholder="Search..." 
+            class="w-full p-2 bg-white text-black border-4 border-black focus:outline-none focus:ring focus:ring-pink-500 text-lg"
+        />
+        <button 
+            type="submit" 
+            @click="handleSearch" 
+            class="p-2 bg-pink-500 text-black border-4 border-black hover:bg-pink-300 text-lg font-bold"
+        >
+            <i class="mdi mdi-magnify"></i> 
+        </button>
+    </div>
+</form>
+
+                    </div>
 
                     <div class="mt-5 mb-10">
                         <Product :products="props.products" :categories="props.categories" :viewAll="true"

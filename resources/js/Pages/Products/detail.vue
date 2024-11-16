@@ -3,12 +3,12 @@
         <Title :title="'Jual '+props.product.name"/>
         <Navbar />
 
-        <div class="container mx-auto mt-5">
+        <div class="container mx-auto mt-5 mb-10">
             <Breadcumbs
                 :breadcrumbs="[{ label: 'Beranda', href: '/' }, { label: 'Product', href: '/posts' }, { label: props.product.category.name, href: '/categories' }, { label: props.product.name, href: '?' }]" />
 
             <div class="mt-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-blue-100 p-1 md:p-5 border-4 border-black shadow-neobrutal">
                     <div class="flex justify-center">
                         <img :src="imageUrl(props.product.image)" class="object-cover rounded max-w-full h-auto">
                     </div>
@@ -16,36 +16,38 @@
                         <h3 class="font-bold text-2xl montserrat">{{ props.product.name }}</h3>
 
                         <ul class="mt-2 p-3">
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-tag"></i> Kategori
                                     :</span> <span>{{ props?.product?.category?.name }}</span> </li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cash"></i> Harga
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-cash"></i> Harga
                                     :</span> <span class="font-bold ">{{ formatCurrency(props?.product?.price) }}</span>
                             </li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-eye"></i> Dilihat
                                     :</span> <span>{{ props?.product?.views }}x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-cart-outline"></i>
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-cart-outline"></i>
                                     Terjual :</span> <span>{{ props?.product?.sold }}x</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-update"></i> Update
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-update"></i> Update
                                     :</span> <span>{{ new Date(props?.product?.updated_at).toDateString() }}</span></li>
-                            <li class="p-2 border-b-2 flex justify-between"><span><i class="mdi mdi-calendar"></i>
+                            <li class="p-2 border-b-2 border-black flex justify-between"><span><i class="mdi mdi-calendar"></i>
                                     Publish :</span> <span>{{ new Date(props?.product?.created_at).toDateString()
                                     }}</span></li>
                         </ul>
-                        <div class="flex items-center flex-col">
+                        <div class="flex items-center flex-row gap-4">
                             <button
-                                :class="loadFavorite.find(fav => fav.id == props?.product.id) ? 'bg-gray-500 text-white hover:bg-red-500 rounded p-2 w-full text-center' : 'bg-red-500 text-white hover:bg-gray-500 rounded p-2 w-full text-center'"
+                                :class="loadFavorite.find(fav => fav.id == props?.product.id) ? 
+                                'bg-gray-500 text-white hover:bg-red-500 p-2 border-4 border-black shadow-neobrutal w-full text-center' : 
+                                'bg-red-500 text-white hover:bg-gray-500 p-2 border-4 border-black shadow-neobrutal w-full text-center'"
                                 @click="fav(props.product.id, props.product.name, props.product.slug)">
                                 <i class="mdi mdi-heart"></i> Favorite
                             </button><br>
                             <Link :href="'/product/checkout/' + props.product.slug"
-                                class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i
+                                class="bg-blue-500 text-white hover:bg-blue-600  p-2 border-4 border-black shadow-neobrutal w-full text-center"><i
                                 class="mdi mdi-cart"></i> Beli Sekarang !</Link>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col md:flex-row mt-5 ">
-                    <div class="basis-3/4 container   min-h-screen border-2 px-10 py-10 rounded">
+                <div class="flex flex-col md:flex-row mt-5 gap-8">
+                    <div class="basis-3/4 container min-h-screen border-4 px-10 py-10 border-black shadow-neobrutal bg-pink-100">
                         <div v-html="props.product.description" class="prose md:prose-xl dark:text-gray-100"></div>
                     </div>
                     <div class="basis-1/4">
@@ -63,7 +65,7 @@
                 <div class="max-w-7xl sm:px-6 lg:px-8  mx-auto">
                     <div class="flex items-center">
                         <Link :href="'/product/checkout/' + props.product.slug"
-                            class="bg-blue-500 text-white hover:bg-blue-600 rounded p-2 w-full text-center"><i
+                            class="bg-blue-500 text-white hover:bg-blue-600 shadow-neobrutal border-4 border-black p-2 w-full text-center"><i
                             class="mdi mdi-cart"></i> Beli Sekarang !</Link>
                     </div>
                 </div>
@@ -101,7 +103,7 @@ const handleScroll = () => {
     const pageHeight = document.documentElement.scrollHeight;
 
     // Adjust the threshold as needed, e.g., 100 for 100px from the bottom
-    if (pageHeight - scrollPosition < 500) {
+    if (pageHeight - scrollPosition < 700) {
         showButton.value = true;
     } else {
         showButton.value = false;

@@ -3,14 +3,14 @@
     <section class="py-12 bg-[#f7f7f7]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <p class="text-4xl font-extrabold tracking-tight text-black border-4 border-black inline-block p-2">
+          <p class="text-4xl font-extrabold tracking-tight text-black border-4 border-black inline-block p-2 shadow-neobrutal">
             Apa yang Kami Tawarkan
           </p>
         </div>
         <div class="mt-10">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Service Card -->
-            <div class="bg-yellow-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-yellow-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-web text-3xl"></i>
@@ -22,7 +22,7 @@
               </p>
             </div>
             <!-- Service Card -->
-            <div class="bg-pink-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-pink-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-cellphone text-3xl"></i>
@@ -34,7 +34,7 @@
               </p>
             </div>
             <!-- Service Card -->
-            <div class="bg-green-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-green-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-chart-line text-3xl"></i>
@@ -46,7 +46,7 @@
               </p>
             </div>
             <!-- Service Card -->
-            <div class="bg-blue-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-blue-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-account-circle text-3xl"></i>
@@ -58,7 +58,7 @@
               </p>
             </div>
             <!-- Service Card -->
-            <div class="bg-orange-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-orange-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-application text-3xl"></i>
@@ -70,7 +70,7 @@
               </p>
             </div>
             <!-- Service Card -->
-            <div class="bg-purple-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform">
+            <div class="bg-purple-200 border-4 border-black p-6 hover:translate-y-[-4px] transition-transform shadow-neobrutal">
               <div class="text-center mb-4">
                 <div class="bg-black text-white p-4 inline-block">
                   <i class="mdi mdi-tools text-3xl"></i>

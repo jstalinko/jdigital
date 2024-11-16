@@ -18,27 +18,28 @@
         </Link>
         <Link
           class="text-black bg-pink-400 border-2 border-black font-bold px-3 py-2 hover:bg-pink-500 montserrat shadow-neobrutal"
-          href="#productSection"
+          href="/products"
         >
           🛒 Produk
         </Link>
         <Link
           class="text-black bg-green-400 border-2 border-black font-bold px-3 py-2 hover:bg-green-500 montserrat shadow-neobrutal"
-          href="#aboutSection"
+          href="/about"
         >
           ℹ️ Tentang
         </Link>
-        <Link
-          class="text-black bg-blue-400 border-2 border-black font-bold px-3 py-2 hover:bg-blue-500 montserrat shadow-neobrutal"
-          href="#serviceSection"
-        >
-          🛠️ Layanan
-        </Link>
+       
         <Link
           class="text-black bg-orange-400 border-2 border-black font-bold px-3 py-2 hover:bg-orange-500 montserrat shadow-neobrutal"
-          href="#contactSection"
+          href="/contact"
         >
           📞 Kontak
+        </Link>
+        <Link
+          class="text-black bg-purple-400 border-2 border-black font-bold px-3 py-2 hover:bg-purple-500 montserrat shadow-neobrutal"
+          href="/posts"
+        >
+          📰 Blog
         </Link>
         <Link
           class="text-black bg-purple-400 border-2 border-black font-bold px-3 py-2 hover:bg-purple-500 montserrat shadow-neobrutal"
@@ -46,12 +47,6 @@
         >
           🔑 Akun
         </Link>
-        <button 
-          @click="toggleDarkMode" 
-          class="ml-3 px-4 py-2 border-2 border-black bg-gray-300 hover:bg-gray-400"
-        >
-          <i :class="isDarkMode ? 'mdi mdi-weather-sunny text-yellow-500' : 'mdi mdi-weather-night text-black'"></i>
-        </button>
       </div>
 
       <!-- Mobile Menu Button -->

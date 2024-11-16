@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white dark:bg-black py-12 border-t-4 border-black dark:border-white">
+  <footer class="bg-pink-200 dark:bg-black py-12 border-t-4 border-black dark:border-white ">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-black dark:text-white">
         <!-- About Us Section -->
@@ -43,8 +43,8 @@
         </div>
       </div>
       <div class="mt-12 border-t-4 border-black dark:border-white pt-8">
-        <p class="text-base text-center">
-          &copy; {{ new Date().getFullYear() }} JavaraDigital - PT. Jepara Solusi Teknologi
+        <p class="text-base text-center font-bold">
+          &copy; {{ new Date().getFullYear() }} JavaraDigital - PT. Jepara Solusi Teknologi | NeoBrutalizm
         </p>
       </div>
     </div>
