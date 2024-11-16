@@ -15,7 +15,8 @@ class Post extends Model
         'content',
         'tags',
         'image',
-        'author'
+        'author',
+        'slug'
     ];
     protected $casts = ['tags' => 'array'];
 
