@@ -6,25 +6,25 @@
     <div class="container mx-auto flex justify-between items-center">
       <img src="/logo.png" class="w-48 hover:grayscale hover:contrast-150">
       <div class="hidden md:block">
-        <Link
+        <a
           class="text-black bg-yellow-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-yellow-500 montserrat shadow-neobrutal"
-          to="#"><i class="mdi mdi-home"></i> Beranda</Link>
-        <Link
+          href="#"><i class="mdi mdi-home"></i> Beranda</a>
+        <a
           class="text-black bg-pink-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-pink-500 montserrat shadow-neobrutal"
-          to="#productSection" @click="scrollToSection('productSection')"><i class="mdi mdi-cart"></i> Produk</Link>
-        <Link
+          href="#productSection" @click="scrollToSection('productSection')"><i class="mdi mdi-cart"></i> Produk</a>
+        <a
           class="text-black bg-green-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-green-500 montserrat shadow-neobrutal"
-          to="#aboutSection" @click="scrollToSection('aboutSection')"><i class="mdi mdi-information"></i> Tentang</Link>
-        <Link
+          href="#aboutSection" @click="scrollToSection('aboutSection')"><i class="mdi mdi-information"></i> Tentang</a>
+        <a
           class="text-black bg-blue-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-blue-500 montserrat shadow-neobrutal"
-          to="#serviceSection" @click="scrollToSection('serviceSection')"><i class="mdi mdi-face-agent"></i> Layanan</Link>
-        <Link
+          href="#serviceSection" @click="scrollToSection('serviceSection')"><i class="mdi mdi-face-agent"></i> Layanan</a>
+        <a
           class="text-black bg-orange-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-orange-500 montserrat shadow-neobrutal"
-          to="#contactSection" @click="scrollToSection('contactSection')"><i
-          class="mdi mdi-email-heart-outline"></i> Kontak</Link>
-        <Link
+          href="#contactSection" @click="scrollToSection('contactSection')"><i
+          class="mdi mdi-email-heart-outline"></i> Kontak</a>
+        <a
           class="text-black bg-purple-400 border-2 border-black font-bold mx-2 px-3 py-2 hover:bg-purple-500 montserrat shadow-neobrutal"
-          to="/dashboard"><i class="mdi mdi-account"></i> Akun</Link>
+          href="/dashboard"><i class="mdi mdi-account"></i> Akun</a>
        
       </div>
     </div>
@@ -40,10 +40,10 @@
       <h2 class="text-black text-2xl md:text-4xl font-bold mb-4 montserrat ">
         Your digital transformation partner.</h2>
       <div>
-        <Link to="/products"
+        <Link href="/products"
           class="bg-yellow-400 border-4 border-black text-black font-bold py-3 px-6 rounded-none hover:bg-yellow-500 transition montserrat shadow-neobrutal">
           Eksplor</Link>&nbsp;&nbsp;
-        <Link to="/contact"
+        <Link href="/contact"
           class="bg-transparent border-4 border-black text-black font-bold py-3 px-6 rounded-none hover:bg-black hover:text-white transition montserrat shadow-neobrutal">
           Hubungi Kami</Link>
       </div>
@@ -67,7 +67,7 @@
   <CookieAlert />
   <Favorites />
 
-  <Navbar class="block md:hidden"/>
+  
 </template>
 
 <script setup>
