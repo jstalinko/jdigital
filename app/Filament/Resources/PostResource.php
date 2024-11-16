@@ -30,7 +30,7 @@ class PostResource extends Resource
                     ->image()
                     ->required()
                     ->columnSpanFull(),
-                Forms\Components\MarkdownEditor::make('content')
+                Forms\Components\RichEditor::make('content')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TagsInput::make('tags')
